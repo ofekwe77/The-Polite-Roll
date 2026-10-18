@@ -1,7 +1,7 @@
 # גליל נייר התואלט המנומס
 ### The Polite Toilet Paper Roll
 
-משחק פלטפורמה דו־ממדי בסגנון אטארי 2600: גליל נייר טואלט מנומס במיוחד קופץ מאסלה לאסלה מעל החושך, בדרך אל כס החרסינה.
+משחק פלטפורמה דו־ממדי : גליל נייר טואלט מנומס במיוחד קופץ מאסלה לאסלה מעל החושך, בדרך אל כס החרסינה.
 
 A 2D Atari‑2600‑style platformer: an extremely polite toilet paper roll jumps from toilet to toilet over the darkness, on its way to the legendary Porcelain Throne.
 
