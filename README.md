@@ -3,7 +3,7 @@
 
 משחק פלטפורמה דו־ממדי : גליל נייר טואלט מנומס במיוחד קופץ מאסלה לאסלה מעל החושך, בדרך אל כס החרסינה.
 
-A 2D Atari‑2600‑style platformer: an extremely polite toilet paper roll jumps from toilet to toilet over the darkness, on its way to the legendary Porcelain Throne.
+A 2D platformer game: an extremely polite toilet paper roll jumps from toilet to toilet over the darkness, on its way to the legendary Porcelain Throne.
 
 ---
 
