@@ -1,0 +1,2200 @@
+
+> # GAME DEVELOPMENT PROJECT
+
+  סמונמה טלאותה ריינ לילג ##
+
+  ### The Polite Toilet Paper Roll
+
+  You are an experienced indie game developer, gameplay programmer, pixel
+  artist, and retro game designer.
+
+  Your task is to **design, implement, test, and deliver a complete, fully
+  playable 2D browser game** called:
+
+  **"סמונמה טלאותה ריינ לילג"**
+
+  English translation: "The Polite Toilet Paper Roll"
+
+  This is not a request for a mockup, prototype screenshot, design document, or
+  conceptual demonstration.
+
+  **Build the actual playable game.**
+
+  The game should capture the visual charm, simplicity, humor, and addictive
+  gameplay of classic Atari 2600 games from the late 1970s and early 1980s.
+
+  ---
+
+  # 1. THE CORE CONCEPT
+
+  The main character is a small, adorable, anthropomorphic roll of toilet
+  paper.
+
+  He is extremely polite.
+
+  His mission is to travel through a bizarre world consisting of floating
+  toilets.
+
+  The player must jump from toilet to toilet without falling into the darkness
+  below.
+
+  Every toilet acts as a platform.
+
+  The gameplay should be simple to understand but increasingly challenging to
+  master.
+
+  The game's humor comes from the absurd concept of a very polite toilet paper
+  roll attempting to survive an increasingly dangerous world of toilets.
+
+  The game should feel like an authentic forgotten Atari cartridge.
+
+  Imagine a combination of:
+
+  * Atari 2600 platform games
+  * Pitfall!
+  * Donkey Kong
+  * Early arcade platformers
+  * Classic single-screen and side-scrolling jumping games
+
+  However, the game must have its own distinct personality.
+
+  **The central gameplay mechanic is jumping between toilets.**
+
+  Everything else should support that mechanic.
+
+  ---
+
+  # 2. MAIN CHARACTER DESIGN
+
+  Create a recognizable pixel-art toilet paper roll.
+
+  The character should have:
+
+  * A small cylindrical body made of white toilet paper.
+  * A visible circular cardboard center.
+  * Two tiny cartoon eyes.
+  * A friendly facial expression.
+  * Two small animated legs.
+  * A loose piece of toilet paper hanging from its body.
+  * A charming, slightly ridiculous personality.
+
+  Optional visual details:
+
+  * A tiny bow tie.
+  * Blinking eyes.
+  * A small smile.
+  * A polite bow after successfully completing a level.
+
+  The sprite should be built entirely with pixel art.
+
+  Use a tiny sprite resolution, approximately 16×16 or 16×20 pixels.
+
+  Animate the character using a small number of frames.
+
+  ### Required character animations
+
+  **Idle:** The toilet paper roll stands on a toilet and gently bobs.
+
+  **Running:** Its tiny legs move rapidly.
+
+  *
+  ──── (961 lines hidden) ─────────────────────────────────────────────────────
+  * High-score persistence.
+  * Responsive layout.
+  * Working keyboard controls.
+  * Working mobile controls.
+  * A short README with instructions for running the game.
+
+  The project should be easy to run locally.
+
+  Prefer a solution that requires no installation or complex configuration.
+
+  If a local development server is necessary, document the exact command.
+
+  Do not leave placeholder features.
+
+  Do not deliver only a visual demonstration.
+
+  Do not substitute an animation for actual interactive gameplay.
+
+  ---
+
+  # 22. CREATIVE DIRECTION
+
+  The game should feel strange, funny, nostalgic, and genuinely enjoyable.
+
+  Imagine discovering an obscure Atari game from 1982 called:
+
+  **"סמונמה טלאותה ריינ לילג"**
+
+  The cartridge artwork depicts a smiling roll of toilet paper courageously
+  leaping between floating toilets.
+
+  The concept is absurd.
+
+  The graphics are extremely simple.
+
+  The gameplay is surprisingly addictive.
+
+  The difficulty slowly increases until the player must execute precise jumps
+  between moving toilets.
+
+  The ultimate reward is reaching the legendary golden porcelain throne.
+
+  Keep the concept intentionally ridiculous.
+
+  Do not turn it into a sophisticated modern platformer.
+
+  **Simple controls. Simple graphics. Excellent game feel. Memorable
+  personality.**
+
+  ---
+
+  # 23. FINAL INSTRUCTIONS
+
+  You have creative freedom over minor visual details and gameplay balancing.
+
+  However, preserve these non-negotiable requirements:
+
+  1. The game's exact Hebrew title is **"סמונמה טלאותה ריינ לילג"**.
+  2. The protagonist is a living, polite roll of toilet paper.
+  3. The primary gameplay is jumping from toilet to toilet.
+  4. The game is a genuine playable 2D platformer.
+  5. The visual style closely resembles an early Atari game.
+  6. The interface is entirely in Hebrew.
+  7. The project contains at least five progressively challenging playable
+  levels.
+  8. The game includes lives, scoring, hazards, sound effects, and high scores.
+  9. The game has a complete beginning, progression, Game Over state, and
+  ending.
+  10. The game runs in a browser without requiring a backend.
+
+  **MOST IMPORTANT:**
+
+  Do not just explain how you would build this game.
+
+  Do not stop after creating a mockup.
+
+  Do not deliver a partially implemented game.
+
+  **Implement the actual game, make it playable, verify the functionality you
+  can test, and deliver the finished project.**
+
+  The final experience should make the player smile the moment they see a tiny,
+  extremely polite roll of toilet paper jumping heroically from one toilet to
+  another.
+
+● I'll start by inspecting the project directory.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The directory is empty, so I'll build from scratch. Let me check what tooling
+  is available for testing.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The directory's empty, so I'll build from scratch—Node 20, Python, and
+  Chrome/Edge are available for real headless-browser testing. Let me check if I
+  can install puppeteer-core to drive the installed Chrome.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● puppeteer-core installed. Quick check that it can drive the installed Chrome
+  headlessly:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Headless Chrome works. I'll build this as a vanilla HTML5 Canvas/Web Audio
+  game with no build step, scaled pixel rendering, a hand-drawn Hebrew pixel
+  font with bidi support, and a fixed 60Hz simulation that a Node bot can run to
+  verify levels—starting now with config and the pixel font to render and check
+  a sample.
+
+● Write(js\config.js)
+  ⎿  Wrote 92 lines to js\config.js
+      1 /* ==========================================================
+      2 config.js — סמונמה טלאותה ריינ לילג
+      3    Global constants: resolution, palette, physics, scoring.
+      4    Pure data — safe to load in Node (used by tools/verify-levels.
+        js).
+      5    ========================================================== */
+      6 (function (TP) {
+      7   'use strict';
+      8
+      9   TP.VERSION = '1.0.0';
+     … +88 lines (ctrl+o to expand)
+
+● Now the Hebrew pixel font — the riskiest visual element, so I'll build it
+  first and inspect it visually before going further.
+
+● Write(js\font.js)
+  ⎿  Wrote 267 lines to js\font.js
+       1 /* ==========================================================
+       2    font.js — hand-made Hebrew + Latin pixel font with a tiny
+       3    bidi layer, so Hebrew renders crisply inside the 320x180
+       4    canvas (right-to-left, numbers/latin runs left-to-right).
+       5
+       7    Rows after index 6 are descenders; {a:n} marks n ascender row
+         s.
+       8    ========================================================== */
+       9 (function (TP) {
+      10   'use strict';
+     … +327 lines (ctrl+o to expand)
+
+● Now a specimen page to render the font and look at it:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Shell escaping mangled the regex; I'll write helper scripts with the Write
+  tool instead.
+
+  Made 1 scratchpad edit +24, read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The font looks good overall, but I noticed מ is being confused with פ (e.g.
+   I'll test several mem designs side by side in .)"ספונפה" reads as "סמונמה"
+  real words to fix this.
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Variant E reads clearly as מ (in "שממ" ,"סמונמה") and stays distinct from פ.
+  Applying it:
+
+● Update(js\font.js)
+  ⎿  Added 1 line, removed 1 line
+      24  ,'#....' ,'#....' ,'#....' ,'#....' ,'#....' ,'.####'[ :'כ'    
+           '####.'],
+      25  ,'#....' ,'#....' ,'#....' ,'#....' ,'#....' ,'.####'[ :'ך'    
+           '....#', '....#', '....#'],
+      26  #....' ,'#....' ,'#####' ,'....#' ,'....#'[ :a: 2, r { :'ל'    
+          ', '....#', '...#.', '..#..', '.#...'] },
+      27 -,'#....' ,'#..#.' ,'#..#.' ,'#..#.' ,'#..#.' ,'.##.#'[ :'מ'    
+         - '.####'],                                                     
+      27 +,'#..#.' ,'#..#.' ,'#..#.' ,'#..#.' ,'#.##.' ,'.#..#'[ :'מ'    
+         + '...##'],                                                     
+      28  ,'#...#' ,'#...#' ,'#...#' ,'#...#' ,'#...#' ,'#####'[ :'ם'    
+           '#####'],
+      29  ,]'###' ,'#..' ,'#..' ,'#..' ,'#..' ,'#..' ,'##.'[ :'נ'    
+      30  ]'#.' ,'#.' ,'#.' ,'#.' ,'#.' ,'#.' ,'#.' ,'#.' ,'##'[ :'ן'    
+          ,
+
+● Now the sprites: the polite roll (all animation frames), collectibles,
+  hazards, and a procedural side-view toilet generator.
+
+● Write(js\sprites.js)
+  ⎿  Wrote 308 lines to js\sprites.js
+       1 /* ==========================================================
+       2    sprites.js — all pixel art, defined as character grids and
+       3    pre-rendered once into small offscreen canvases.
+       4    ========================================================== */
+       5 (function (TP) {
+       6   'use strict';
+       7
+       8   const P = TP.PAL;
+       9
+      10   function makeCanvas(w, h) {
+     … +362 lines (ctrl+o to expand)
+
+● Let me render a sprite sheet to check the art:
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The art reads well: the roll is cute, the side-view toilets look like toilets,
+  and the golden throne with its crown looks good. Let me zoom in on the player
+  frames to check details:
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The zoomed view shows the roll currently reads as a coffee mug, with the brown
+  top mimicking coffee and the paper tail resembling a handle. I'll fix this by
+  making the top a white paper ring on a small tube, letting the loose sheet
+  hang freely without looping back, softening the bow pose, and widening the
+  canvas so the sheet can stream behind.
+
+● Update(js\sprites.js)
+  ⎿  Added 57 lines, removed 52 lines
+      56    // The polite toilet-paper roll (facing right).
+      57    // ---------------------------------------------------------
+      58    const ROLL_PAL = {
+      59 -    W: P.white, E: P.cream, S: '#b8a888', T: P.tan, U: P.brown,
+      60 -    K: '#000000', R: P.red, r: P.dkRed, P: P.pink              
+      59 +    H: '#ffffff', W: P.white, L: P.light, E: P.cream, S: '#b8a8
+         +88', T: P.tan, U: P.brown,                                     
+      60 +    K: '#000000', R: P.red, r: P.dkRed, P: P.pink, D: '#a8a8a8'
+      61    };
+      62  
+      63 -  // 16 cols x 13 rows: top of the roll shows the cardboard tub
+         -e.                                                             
+      63 +  // 16 cols x 15 rows. The top shows the white paper ring arou
+         +nd a                                                           
+      64 +  // small cardboard tube; the side is the roll's body.        
+      65    const BODY = [
+      65 -    '......WWWWWW....',                                        
+      66 -    '....WWTTTTTTWW..',                                        
+      67 -    '...WTTTUUUUTTTW.',                                        
+      68 -    '...WWTTTTTTTTWW.',                                        
+      66 +    '.....HHHHHHHH...',                                        
+      67 +    '...HHHHTTTTHHHH.',                                        
+      68 +    '...HHHTTUUTTHHH.',                                        
+      69 +    '...HHHHTTTTHHHH.',                                        
+      70 +    '...ELHHHHHHHHLW.',                                        
+      71 +    '...EWLLLLLLLLWW.',                                        
+      72      '...EWWWWWWWWWWW.',
+      73      '...EWWWWWWWWWWW.',
+      74      '...EWWWWWWWWWWW.',
+     ...
+       82  
+       83    // Face overlays: [x, y, char] relative to BODY.
+       84    const FACES = {
+       82 -    normal: [[10, 5, 'K'], [10, 6, 'K'], [13, 5, 'K'], [13, 6,
+          - 'K'],                                                        
+       83 -             [10, 8, 'K'], [13, 8, 'K'], [11, 9, 'K'], [12, 9,
+          - 'K'], [9, 8, 'P']],                                          
+       84 -    blink:  [[9, 6, 'K'], [10, 6, 'K'], [12, 6, 'K'], [13, 6, 
+          -'K'],                                                         
+       85 -             [10, 8, 'K'], [13, 8, 'K'], [11, 9, 'K'], [12, 9,
+          - 'K'], [9, 8, 'P']],                                          
+       86 -    happy:  [[9, 6, 'K'], [10, 5, 'K'], [11, 6, 'K'], [12, 6, 
+          -'K'], [13, 5, 'K'], [14, 6, 'K'],                             
+       87 -             [10, 8, 'K'], [13, 8, 'K'], [11, 9, 'K'], [12, 9,
+          - 'K'], [9, 8, 'P']],                                          
+       88 -    panic:  [[9, 4, 'K'], [10, 4, 'K'], [9, 5, 'K'], [10, 5, '
+          -K'], [9, 6, 'K'], [10, 6, 'K'],                               
+       89 -             [12, 4, 'K'], [13, 4, 'K'], [12, 5, 'K'], [13, 5,
+          - 'K'], [12, 6, 'K'], [13, 6, 'K'],                            
+       90 -             [11, 8, 'K'], [12, 8, 'K'], [11, 9, 'K'], [12, 9,
+          - 'K']],                                                       
+       91 -    dead:   [[8, 4, 'K'], [10, 4, 'K'], [9, 5, 'K'], [8, 6, 'K
+          -'], [10, 6, 'K'],                                             
+       92 -             [12, 4, 'K'], [14, 4, 'K'], [13, 5, 'K'], [12, 6,
+          - 'K'], [14, 6, 'K'],                                          
+       93 -             [10, 8, 'K'], [11, 8, 'K'], [12, 8, 'K']]        
+       85 +    normal: [[10, 7, 'K'], [10, 8, 'K'], [13, 7, 'K'], [13, 8,
+          + 'K'],                                                        
+       86 +             [10, 10, 'K'], [13, 10, 'K'], [11, 11, 'K'], [12,
+          + 11, 'K'], [9, 10, 'P']],                                     
+       87 +    blink:  [[9, 8, 'K'], [10, 8, 'K'], [12, 8, 'K'], [13, 8, 
+          +'K'],                                                         
+       88 +             [10, 10, 'K'], [13, 10, 'K'], [11, 11, 'K'], [12,
+          + 11, 'K'], [9, 10, 'P']],                                     
+       89 +    happy:  [[9, 8, 'K'], [10, 7, 'K'], [11, 8, 'K'], [12, 8, 
+          +'K'], [13, 7, 'K'], [14, 8, 'K'],                             
+       90 +             [10, 10, 'K'], [13, 10, 'K'], [11, 11, 'K'], [12,
+          + 11, 'K'], [9, 10, 'P']],                                     
+       91 +    panic:  [[9, 6, 'K'], [10, 6, 'K'], [9, 7, 'K'], [10, 7, '
+          +K'], [9, 8, 'K'], [10, 8, 'K'],                               
+       92 +             [12, 6, 'K'], [13, 6, 'K'], [12, 7, 'K'], [13, 7,
+          + 'K'], [12, 8, 'K'], [13, 8, 'K'],                            
+       93 +             [11, 10, 'K'], [12, 10, 'K'], [11, 11, 'K'], [12,
+          + 11, 'K']],                                                   
+       94 +    dead:   [[8, 6, 'K'], [10, 6, 'K'], [9, 7, 'K'], [8, 8, 'K
+          +'], [10, 8, 'K'],                                             
+       95 +             [12, 6, 'K'], [14, 6, 'K'], [13, 7, 'K'], [12, 8,
+          + 'K'], [14, 8, 'K'],                                          
+       96 +             [10, 10, 'K'], [11, 10, 'K'], [12, 10, 'K']]     
+       97    };
+       98  
+       96 -  const BOWTIE = [[9, 10, 'R'], [13, 10, 'R'], [9, 11, 'R'], [
+          -10, 11, 'R'], [11, 11, 'r'],                                  
+       97 -                  [12, 11, 'R'], [13, 11, 'R'], [9, 12, 'R'], 
+          -[13, 12, 'R']];                                               
+       99 +  const BOWTIE = [[9, 12, 'R'], [13, 12, 'R'], [9, 13, 'R'], [
+          +10, 13, 'R'], [11, 13, 'r'],                                  
+      100 +                  [12, 13, 'R'], [13, 13, 'R'], [9, 14, 'R'], 
+          +[13, 14, 'R']];                                               
+      101  
+       99 -  // Loose sheet of paper hanging from the back of the roll.  
+      102 +  // The loose sheet: a free strip of paper hanging from the b
+          +ack of the                                                    
+      103 +  // roll (never reconnecting, so it reads as paper, not a mug
+          + handle).                                                     
+      104 +  // [x, y, char] with x relative to BODY (may be negative = b
+          +ehind).                                                       
+      105    const TAILS = {
+      101 -    a:   [[1, 5], [2, 5], [0, 6], [1, 6], [0, 7], [1, 7], [1, 
+          -8], [2, 8], [1, 9], [2, 9], [0, 10], [1, 10], [0, 11], [1, 11]
+          -, [1, 12]],                                                   
+      102 -    b:   [[1, 5], [2, 5], [1, 6], [2, 6], [0, 7], [1, 7], [0, 
+          -8], [1, 8], [1, 9], [2, 9], [1, 10], [2, 10], [0, 11], [1, 11]
+          -, [0, 12]],                                                   
+      103 -    up:  [[2, 5], [1, 4], [2, 4], [0, 3], [1, 3], [0, 2], [1, 
+          -2], [1, 1], [2, 1], [1, 0], [2, 0]],                          
+      104 -    back:[[2, 5], [1, 5], [0, 5], [1, 6], [0, 6], [0, 4]]     
+      106 +    a:    [[2, 5, 'W'], [1, 5, 'W'], [1, 6, 'W'], [0, 6, 'W'],
+          + [0, 7, 'W'], [-1, 7, 'W'], [0, 8, 'D'], [-1, 8, 'D'],        
+      107 +           [0, 9, 'W'], [-1, 9, 'W'], [-1, 10, 'W'], [-2, 10, 
+          +'W'], [-1, 11, 'D'], [-2, 11, 'D'], [-1, 12, 'W'], [-2, 12, 'W
+          +'], [-1, 13, 'W']],                                           
+      108 +    b:    [[2, 5, 'W'], [1, 5, 'W'], [1, 6, 'W'], [0, 6, 'W'],
+          + [1, 7, 'W'], [0, 7, 'W'], [0, 8, 'D'], [-1, 8, 'D'],         
+      109 +           [-1, 9, 'W'], [-2, 9, 'W'], [-1, 10, 'W'], [-2, 10,
+          + 'W'], [-2, 11, 'D'], [-3, 11, 'D'], [-2, 12, 'W'], [-3, 12, '
+          +W'], [-3, 13, 'W']],                                          
+      110 +    back: [[2, 5, 'W'], [1, 5, 'W'], [1, 6, 'W'], [0, 6, 'W'],
+          + [-1, 6, 'W'], [-1, 7, 'D'], [-2, 7, 'D'], [-3, 7, 'W'], [-2, 
+          +8, 'W'],                                                      
+      111 +           [-3, 8, 'W'], [-4, 8, 'W'], [-5, 9, 'W'], [-4, 9, '
+          +W']],                                                         
+      112 +    up:   [[2, 5, 'W'], [1, 4, 'W'], [2, 4, 'W'], [0, 3, 'W'],
+          + [1, 3, 'W'], [0, 2, 'D'], [-1, 2, 'D'], [-1, 1, 'W'], [0, 1, 
+          +'W'],                                                         
+      113 +           [-1, 0, 'W'], [-2, 0, 'W']]                        
+      114    };
+      115  
+      107 -  // Legs below the body (16 cols wide, aligned with BODY).   
+      116 +  // Legs below the body (aligned with BODY columns).         
+      117    const LEGS = {
+      118      stand:  ['......W....W....', '......W....W....', '......RR
+           ...RR...'],
+      119      short:  ['......W....W....', '......RR...RR...'],
+     ...
+      121      pass:   ['.......W..W.....', '.......W..W.....', '.......R
+           R.RR....'],
+      122      spread2:['.....W.....W....', '....W.......RR..', '...RR...
+           ........'],
+      123      tuck:   ['.....W....W.....', '....RR....RR....'],
+      115 -    dangle: ['.....W.....W....', '....W.......W...', '....R...
+          -....R...'],                                                   
+      116 -    none:   []                                                
+      124 +    dangle: ['.....W.....W....', '....W.......W...', '....R...
+          +....R...']                                                    
+      125    };
+      126  
+      119 -  const PW = 18;   // player canvas width                     
+      120 -  const PH = 18;   // player canvas height                    
+      121 -  const ANCHOR_R = 10;  // x of the feet centre when facing ri
+          -ght                                                           
+      122 -  const ANCHOR_L = 8;   // ... when facing left (mirrored)    
+      127 +  const PW = 22;        // player canvas width                
+      128 +  const PH = 21;        // player canvas height               
+      129 +  const OX = 5;         // BODY column 0 inside the canvas    
+      130 +  const ANCHOR_R = 12 + OX - 3;   // feet centre (canvas x) fa
+          +cing right                                                    
+      131 +  const ANCHOR_L = PW - ANCHOR_R; // ... facing left (mirrored
+          +)                                                             
+      132  
+      133    function playerFrame(o) {
+      125 -    const face = o.face || 'normal';                          
+      126 -    const tail = o.tail || 'a';                               
+      134      const legs = LEGS[o.legs || 'stand'];
+      135      const grid = [];
+      136      for (let y = 0; y < PH; y++) grid.push(new Array(PW).fill(
+           '.'));
+      137      const set = (x, y, ch) => { if (x >= 0 && y >= 0 && x < PW
+            && y < PH) grid[y][x] = ch; };
+      138  
+      132 -    // Body rows, optionally squashed (rows removed from the m
+          -iddle).                                                       
+      133 -    let body = BODY.map((r) => r.split(''));                  
+      134 -    for (const [x, y, ch] of FACES[face]) body[y][x] = ch;    
+      135 -    if (o.bowtie !== false) for (const [x, y, ch] of BOWTIE) b
+          -ody[y][x] = ch;                                               
+      136 -    if (o.squash) body.splice(6, o.squash);                   
+      139 +    const body = BODY.map((r) => r.split(''));                
+      140 +    for (const [x, y, ch] of FACES[o.face || 'normal']) body[y
+          +][x] = ch;                                                    
+      141 +    for (const [x, y, ch] of BOWTIE) body[y][x] = ch;         
+      142 +    if (o.squash) body.splice(8, o.squash);       // landing s
+          +quash                                                         
+      143      const bodyH = body.length;
+      144      const top = PH - legs.length - bodyH + (o.bob || 0);
+      139 -    const ox = 1;                                             
+      145      for (let y = 0; y < bodyH; y++) {
+      141 -      // Shear for the polite bow: upper rows lean forward.   
+      146 +      // Polite bow: the top of the roll tips forward.        
+      147        let shift = 0;
+      143 -      if (o.bow) shift = y < 4 ? o.bow : y < 8 ? Math.ceil(o.b
+          -ow / 2) : 0;                                                  
+      144 -      for (let x = 0; x < 16; x++) if (body[y][x] !== '.') set
+          -(x + ox + shift, y + top, body[y][x]);                        
+      148 +      if (o.bow) shift = y < 5 ? o.bow : y < 9 ? o.bow - 1 : 0
+          +;                                                             
+      149 +      for (let x = 0; x < 16; x++) if (body[y][x] !== '.') set
+          +(x + OX + shift, y + top + (o.bow && y < 5 ? 1 : 0), body[y][x
+          +]);                                                           
+      150      }
+      146 -    for (const [x, y] of TAILS[tail]) {                       
+      147 -      const yy = Math.min(y, bodyH - 1);                      
+      148 -      if (grid[yy + top] && grid[yy + top][x + ox] === '.') se
+          -t(x + ox, yy + top, 'W');                                     
+      151 +    for (const [x, y, ch] of TAILS[o.tail || 'a']) {          
+      152 +      const yy = Math.min(y, bodyH - 1) + top;                
+      153 +      if (grid[yy] && grid[yy][x + OX] === '.') set(x + OX, yy
+          +, ch);                                                        
+      154      }
+      155      for (let y = 0; y < legs.length; y++) {
+      151 -      for (let x = 0; x < legs[y].length; x++) if (legs[y][x] 
+          -!== '.') set(x + ox, PH - legs.length + y, legs[y][x]);       
+      156 +      for (let x = 0; x < legs[y].length; x++) if (legs[y][x] 
+          +!== '.') set(x + OX, PH - legs.length + y, legs[y][x]);       
+      157      }
+      158      return fromRows(grid.map((r) => r.join('')), ROLL_PAL);
+      159    }
+     ...
+      163      idle1: { face: 'normal', tail: 'b', legs: 'short' },
+      164      blink: { face: 'blink', tail: 'a', legs: 'stand' },
+      165      run0:  { face: 'normal', tail: 'back', legs: 'spread' },
+      161 -    run1:  { face: 'normal', tail: 'a', legs: 'pass', bob: -1 
+          -},                                                            
+      166 +    run1:  { face: 'normal', tail: 'back', legs: 'pass', bob: 
+          +-1 },                                                         
+      167      run2:  { face: 'normal', tail: 'back', legs: 'spread2' },
+      163 -    run3:  { face: 'normal', tail: 'b', legs: 'pass', bob: -1 
+          -},                                                            
+      168 +    run3:  { face: 'normal', tail: 'back', legs: 'pass', bob: 
+          +-1 },                                                         
+      169      jump:  { face: 'normal', tail: 'back', legs: 'tuck' },
+      170      fall:  { face: 'panic', tail: 'up', legs: 'dangle' },
+      171      land:  { face: 'blink', tail: 'b', legs: 'short', squash: 
+           2 },
+      167 -    bow1:  { face: 'happy', tail: 'a', legs: 'stand', bow: 2 }
+          -,                                                             
+      168 -    bow2:  { face: 'happy', tail: 'b', legs: 'stand', bow: 4, 
+          -bob: 1 },                                                     
+      172 +    bow1:  { face: 'happy', tail: 'a', legs: 'stand', bow: 1 }
+          +,                                                             
+      173 +    bow2:  { face: 'happy', tail: 'b', legs: 'stand', bow: 2 }
+          +,                                                             
+      174      happy: { face: 'happy', tail: 'a', legs: 'stand' },
+      175      dead:  { face: 'dead', tail: 'up', legs: 'dangle' }
+      176    };
+
+● Re-rendering the zoomed frames, crisp this time (smoothing off):
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The toilet paper roll design is now complete, with its paper top, tube,
+  trailing perforated sheet, bow tie, and red shoes. Next I'll build the core
+  simulation logic in sim.js, written DOM-free so it runs identically in the
+  browser and the Node verification bot.
+
+● Write(js\sim.js)  ⎿  Wrote 409 lines to js\sim.js
+       1 /* ==========================================================
+       2    sim.js — the deterministic game simulation.
+       3    Player physics, toilet platforms (static, moving, unstable,
+       4    slippery, golden), hazards, collectibles and collisions.
+       5
+       6    Pure logic, no DOM: the same code runs in the browser and in
+       7    tools/verify-levels.js (the level-completability bot).
+       8    World state is plain data so it can be structuredClone()d.
+       9    ========================================================== */
+      10 (function (TP) {
+     … +428 lines (ctrl+o to expand)
+
+● Now the level data. I'll write first-draft layouts for all 5 levels, then
+  build the bot to check and tune them with real numbers rather than by eye.
+
+● Write(js\levels.js)
+  ⎿  Wrote 209 lines to js\levels.js
+       1 /* ==========================================================
+       2    levels.js — five hand-designed levels.
+         t,
+       4    'L' = tank on the right. The tank lid is a small extra platfo
+         rm.
+         .
+       6    ========================================================== */
+       7 (function (TP) {
+       9
+      10   function T(x, y, w, f, extra) {
+     … +238 lines (ctrl+o to expand)
+
+● Next I'll build a verification bot that loads the actual sim.js in Node and
+  searches input sequences—wait time, run-up, jump timing, hold duration, and
+  air steering—to prove each level is completable, while also measuring how
+  forgiving each required jump is.
+
+● Write(tools\verify-levels.js)
+  ⎿  Wrote 198 lines to tools\verify-levels.js
+       1 #!/usr/bin/env node
+       2 /* ==========================================================
+       3    verify-levels.js — proves every level can be completed.
+       4
+       5    Loads the game's real simulation (js/config.js, js/levels.js,
+       6    js/sim.js) into a Node VM and runs a search bot that plays
+       7    each level with plain keyboard-style inputs: wait, run, jump
+       8    (with variable hold time) and air steering. The bot uses
+       9    exactly the same physics as the game, so a found solution is
+      10    a genuine playthrough.
+     … +217 lines (ctrl+o to expand)
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Level 1 is verified completable by the real physics in 2.3 s. Running all five
+  levels:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The bot confirms all 5 levels are completable, hitting every toilet in order
+  without skips. Since completable doesn't mean fair, I'll now measure
+  jump-timing windows—how many frames a player has to press jump while
+  running—as a more human-relevant difficulty metric.
+
+● Update(tools\verify-levels.js)
+  ⎿  Added 17 lines, removed 14 lines
+      137  }
+      138  
+      139  /**
+      140 - * Forgiveness: from the state before each jump, with the solu
+          -tion's                                                        
+      141 - * wait time fixed, try a grid of run-up / hold / steer variat
+          -ions and                                                      
+      142 - * report the share that still reaches the same toilet alive. 
+      140 + * Jump-timing window: from the state before each jump (with t
+          +he                                                            
+      141 + * solution's wait kept, so moving parts are in the same phase
+          +), the                                                        
+      142 + * player runs right and presses jump on frame k. Frame k coun
+          +ts as                                                         
+      143 + * "good" if some reasonable hold/steer combination reaches th
+          +e same                                                        
+      144 + * toilet alive. Returns the number of good frames (60 = one s
+          +econd).                                                       
+      145   */
+      144 -function forgiveness(TP, step) {                              
+      146 +function timingWindow(TP, step) {                             
+      147    const target = step.to;
+      146 -  let ok = 0, total = 0;                                      
+      147 -  const a0 = step.a;                                          
+      148 -  for (let pre = 0; pre <= 30; pre += 3) for (const pdir of [1
+          -, 0]) {                                                       
+      149 -    if (pdir === 0 && pre > 0) continue;                      
+      150 -    for (const hold of [4, 8, 12, 16, 20, 99]) for (const stee
+          -r of [6, 12, 18, 24, 32, 99]) {                               
+      151 -      const a = { wait: a0.wait, pdir: pdir, pre: pre, jdir: a
+          -0.jdir === 0 ? 1 : a0.jdir, hold, steer };                    
+      152 -      const r = run(TP, step.before, a);                      
+      153 -      total++;                                                
+      154 -      if (target === 'GOLD' ? r.complete : (r.landed && r.land
+          -ed.t === target)) ok++;                                       
+      148 +  const hit = (r) => (target === 'GOLD' ? r.complete : (r.land
+          +ed && r.landed.t === target));                                
+      149 +  let good = 0;                                               
+      150 +  for (let k = 0; k <= 60; k++) {                             
+      151 +    let any = false;                                          
+      152 +    for (const hold of [6, 10, 14, 20, 99]) {                 
+      153 +      for (const steer of [8, 14, 20, 28, 99]) {              
+      154 +        if (hit(run(TP, step.before, { wait: step.a.wait, pdir
+          +: 1, pre: k, jdir: 1, hold, steer }))) { any = true; break; } 
+      155 +      }                                                       
+      156 +      if (any) break;                                         
+      157      }
+      158 +    if (any) good++;                                          
+      159    }
+      157 -  return ok / total;                                          
+      160 +  return good;                                                
+      161  }
+      162  
+      163  function main() {
+
+● Update(tools\verify-levels.js)
+  ⎿  Added 3 lines, removed 3 lines
+      183      console.log(`Level ${li + 1}: completable in ${res.path.le
+           ngth} jumps (${secs}s). Route: ${rp.steps[0].from} > ${route}`
+           );
+      184      if (!rp.complete) { allOk = false; console.log('  !! repla
+           y did not complete'); }
+      185      if (wantF) {
+      186 -      const f = rp.steps.map((s) => forgiveness(TP, s));      
+      187 -      const fmt = f.map((v, i) => `${rp.steps[i].from}>${rp.st
+          -eps[i].to}:${Math.round(v * 100)}%`).join('  ');              
+      188 -      console.log(`  forgiveness: min ${Math.round(Math.min(..
+          -.f) * 100)}%  avg ${Math.round(f.reduce((a, b) => a + b, 0) / 
+          -f.length * 100)}%`);                                          
+      186 +      const f = rp.steps.map((s) => timingWindow(TP, s));     
+      187 +      const fmt = f.map((v, i) => `${rp.steps[i].from}>${rp.st
+          +eps[i].to}:${v}`).join('  ');                                 
+      188 +      console.log(`  jump timing window (frames @60fps): min $
+          +{Math.min(...f)}  avg ${(f.reduce((a, b) => a + b, 0) / f.leng
+          +th).toFixed(1)}`);                                            
+      189        console.log('  ' + fmt);
+      190      }
+      191      solutions[li] = res.path;
+
+● Update(tools\verify-levels.js)
+  ⎿  Added 2 lines, removed 2 lines
+      12     Usage:
+      13       node tools/verify-levels.js            # all levels
+      14       node tools/verify-levels.js 3          # only level 3
+      15 -     node tools/verify-levels.js --forgiveness   # also measure
+         - how                                                           
+      16 -                                                 # forgiving ea
+         -ch jump is                                                     
+      15 +     node tools/verify-levels.js --forgiveness   # also measure
+         + each jump's                                                   
+      16 +                                                 # timing windo
+         +w (frames)                                                     
+      17       node tools/verify-levels.js --save     # write tools/solut
+          ions.json
+      18  
+      19     No dependencies. Exit code 1 if any level is not completable
+          .
+
+● I'll run the timing-window analysis in the background while I write the rest
+  of the game.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● While that runs, I'm building the audio module: Web Audio-based synthesis
+  (square/triangle/pulse waves plus sample-and-hold noise in Atari TIA style),
+  with three original looping tunes that start after the first user interaction.
+
+● Write(js\audio.js)
+  ⎿  Wrote 301 lines to js\audio.js
+       1 /* ==========================================================
+       2    audio.js — Atari-style synthesized sound (Web Audio API).
+       3    No sound files: square/triangle waves + crunchy noise.
+       4    The AudioContext is only created after a user gesture.
+       5    ========================================================== */
+       6 (function (TP) {
+       7   'use strict';
+       8
+       9   let ctx = null;
+      10   let master = null;
+     … +340 lines (ctrl+o to expand)
+
+● Background command "Measure jump timing windows for all levels" completed
+(exit code 0)
+
+  Read 1 file (ctrl+o to expand)
+
+● Checking the timing windows shows levels 3-5 have unfairly tight jumps (1-3
+  frame margins), plus a layout bug at T8→T9 on level 4 — I'll fix these later
+  once the overall feel is tuned, since that may shift the numbers anyway.
+  Moving on now to build the input manager: keyboard via physical key codes
+  (Hebrew-layout safe) plus multi-touch virtual buttons.
+
+● Write(js\input.js)
+  ⎿  Wrote 129 lines to js\input.js
+       1 /* ==========================================================
+       2    input.js — keyboard + touch input.
+       3    Uses KeyboardEvent.code (physical keys), so the controls work
+       4    the same with a Hebrew keyboard layout.
+       5    ========================================================== */
+       6 (function (TP) {
+       7   'use strict';
+       8
+       9   // physical key -> actions
+      10   const KEYMAP = {
+     … +129 lines (ctrl+o to expand)
+
+● Next, the score manager (lives, high-score persistence, extra life) and the
+  renderer (world, effects, speech bubbles, camera-relative drawing).
+
+● Write(js\score.js)
+  ⎿  Wrote 74 lines to js\score.js
+       1 /* ==========================================================
+       2    score.js — score, lives, high score (localStorage) and the
+       3    furthest level reached (for level select).
+       4    ========================================================== */
+       5 (function (TP) {
+       6   'use strict';
+       7
+       8   function readInt(key) {
+       9     try {
+      10       const v = parseInt(localStorage.getItem(key), 10);
+     … +67 lines (ctrl+o to expand)
+
+● Write(js\renderer.js)
+  ⎿  Wrote 276 lines to js\renderer.js
+       1 /* ==========================================================
+       2    renderer.js — draws the game world onto the 320x180 canvas:
+       3    starfield, toilets, water splashes, items, hazards, the roll,
+       4    particles, score popups and speech bubbles.
+       5    ========================================================== */
+       6 (function (TP) {
+       7   'use strict';
+       8
+       9   const W = TP.W;
+      10   const H = TP.H;
+     … +307 lines (ctrl+o to expand)
+
+● Now the UI module: HUD, canvas-drawn menus (keyboard plus mouse/tap hit
+  regions), and every screen: title, help, level select, level intro, pause,
+  level complete, game over, and the final victory.
+
+● Write(js\ui.js)
+  ⎿  Wrote 521 lines to js\ui.js
+       1 /* ==========================================================
+       2    ui.js — Hebrew menus, HUD and all game screens, drawn in the
+       3    pixel font on the canvas. Menus work with the keyboard
+       4    (↑ ↓ Enter / Esc) and with mouse clicks / screen taps.
+       5    ========================================================== */
+       6 (function (TP) {
+       7   'use strict';
+       8
+       9   const W = TP.W;
+      10   const H = TP.H;
+     … +589 lines (ctrl+o to expand)
+
+● I'll fix two issues before moving to game.js: updating pointer hit-testing to
+  use the latest frame's regions (passed at frame end) and adding the
+  empty-cardboard-tube sprite for the "ריינה רמגנ!" screen.
+
+● Update(js\ui.js)
+  ⎿  Added 5 lines, removed 5 lines
+      18    // ---------------------------------------------------------
+      19    // Pointer support: regions are registered while drawing.
+      20    // ---------------------------------------------------------
+      21 -  let hits = [];                                               
+      22 -  let lastHits = [];                                           
+      21 +  let building = [];   // regions registered while drawing this
+         + frame                                                         
+      22 +  let hits = [];       // regions of the last completed frame (
+         +used for input)                                                
+      23    let downId = null;
+      24  
+      25 -  function addHit(r) { hits.push(r); }                         
+      25 +  function addHit(r) { building.push(r); }                     
+      26    function hitAt(x, y) {
+      27 -    for (let i = lastHits.length - 1; i >= 0; i--) {           
+      28 -      const r = lastHits[i];                                   
+      27 +    for (let i = hits.length - 1; i >= 0; i--) {               
+      28 +      const r = hits[i];                                       
+      29        if (x >= r.x && x < r.x + r.w && y >= r.y && y < r.y + r.
+          h) return r;
+      30      }
+      31      return null;
+
+● Update(js\ui.js)
+  ⎿  Added 3 lines, removed 2 lines
+      512  
+      513    TP.UI = {
+      514      init(g) { game = g; buildMenus(); },
+      515 -    beginFrame() { lastHits = hits; hits = []; },             
+      516 -    endFrame() { /* hits collected for next frame's input */ }
+          -,                                                             
+      515 +    beginFrame() { building = []; },                          
+      516 +    endFrame() { hits = building; },                          
+      517 +    hitAt,                                                    
+      518      bindPointer, updateMenus, resetMenu, menus,
+      519      drawHUD, drawTitle, drawHelp, drawSelect, drawIntro, drawP
+           ause, drawComplete, drawGameOver, drawVictory,
+      520      panel, dither, text, pad
+● Update(js\sprites.js)
+  ⎿  Added 20 lines
+      216      fromRows(['....G....', '..NNGNN..'], DECO_PAL)
+      217    ];
+      218    const lifeIcon = fromRows(['.WWW.', 'WTUTW', 'EWWWW', 'EWKWK
+           ', 'EWWWW', '.EWW.'], DECO_PAL);
+      219 +  // Game over: the roll has run out of paper — just a sad car
+          +dboard tube.                                                  
+      220 +  const tube = fromRows([                                     
+      221 +    '....TTTTTTTT....',                                       
+      222 +    '..TTTUUUUUUTTT..',                                       
+      223 +    '..TTUUUUUUUUTT..',                                       
+      224 +    '..TTTUUUUUUTTT..',                                       
+      225 +    '..OTTTTTTTTTTT..',                                       
+      226 +    '..OTTTTTTTTTTT..',                                       
+      227 +    '..OTTKTTTTKTTT..',                                       
+      228 +    '..OTTKTTTTKTTT..',                                       
+      229 +    '..OTTCTTTTTTTT..',                                       
+      230 +    '..OTTTTKKTTTTT..',                                       
+      231 +    '..OTTTKTTKTTTT..',                                       
+      232 +    '..OTTTTTTTTTTT..',                                       
+      233 +    '..OTTTTTTTTTTT..',                                       
+      234 +    '...OTTTTTTTTT...',                                       
+      235 +    '....W......W....',                                       
+      236 +    '....W......W....',                                       
+      237 +    '...RR.....RR....'                                        
+      238 +  ], { T: P.tan, O: '#8c5430', U: P.brown, K: '#000000', C: P.
+          +cyan, W: P.white, R: P.red });                                
+      239  
+      240    // ---------------------------------------------------------
+      241    // Toilets — side view, drawn procedurally for any seat widt
+           h.
+
+● Update(js\sprites.js)
+  ⎿  Added 1 line, removed 1 line
+      327    TP.Sprites = {
+      328      makeCanvas, fromRows, flipH, rot90,
+      329      player, deadSpin, PW, PH, ANCHOR_R, ANCHOR_L,
+      330 -    sheet, bubble, star, plunger, soap, sign, crown, prop, lif
+          -eIcon,                                                        
+      330 +    sheet, bubble, star, plunger, soap, sign, crown, prop, lif
+          +eIcon, tube,                                                  
+      331      toilet, TOILET_PAL
+      332    };
+      333  })(window.TP = window.TP || {});
+
+● Next I'll work on game.js, the coordinator handling the state machine,
+  fixed-timestep loop, event handling (scoring, sounds, particles, speech
+  bubbles), lives, death/respawn, level-complete tally, game over, and victory.
+
+● Write(js\game.js)
+  ⎿  Wrote 561 lines to js\game.js
+      1 /* ==========================================================
+      2    game.js — state machine, fixed-timestep loop, scoring,
+      3    lives, effects and the polite personality.
+      4
+      5    States: title · help · select · intro · play · pause ·
+      6            complete · gameover · victory
+      7    ========================================================== */
+      8 (function (TP) {
+      9   'use strict';
+     … +591 lines (ctrl+o to expand)
+
+● Next I'll write main.js to bootstrap the app, handling responsive scaling,
+  touch-button setup with pixel-art icons, auto-pause on tab switch, blocking
+  scroll/zoom gestures, and screen-reader announcements.
+
+● Write(js\main.js)
+  ⎿  Wrote 121 lines to js\main.js
+       1 /* ==========================================================
+       2    main.js — boot: canvas scaling, touch controls, audio
+       3    unlock, auto-pause, accessibility announcements.
+       4    ========================================================== */
+       5 (function (TP) {
+       6   'use strict';
+       7
+       8   const G = TP.game;
+       9   const canvas = document.getElementById('screen');
+      10   const ctx = canvas.getContext('2d', { alpha: false });
+     … +139 lines (ctrl+o to expand)
+
+● Now index.html and the stylesheet:
+
+● Write(index.html)
+  ⎿  Wrote 46 lines to index.html
+       1 <!doctype html>
+       2 <html lang="he" dir="rtl">
+       4   <meta charset="utf-8">
+       5   <meta name="viewport" content="width=device-width, initial-sca
+         le=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+       7   <meta name="mobile-web-app-capable" content="yes">
+       8   <meta name="apple-mobile-web-app-capable" content="yes">
+       9   <meta name="description" content="טא ןונגסב ורטר המרופטלפ קחשמ
+         >".הני
+      10   <title>סמונמה טלאותה ריינ לילג</title>
+     … +53 lines (ctrl+o to expand)
+
+● Write(css\style.css)
+  ⎿  Wrote 147 lines to css\style.css
+       1 page layout around the pixel canvas — סמונמה טלאותה ריינ לילג */
+          */
+       2
+       3 :root {
+       4   --tbtn: 72px;
+       6   --hot: #fcfc68;
+       7 }
+       8
+       9 html,
+      10 body {
+     … +139 lines (ctrl+o to expand)
+
+● Everything is in place for a first run. Screenshot of the title screen, plus a
+  check for JavaScript errors:
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● The title screen renders without errors, with Hebrew text and controls
+  displaying correctly. I'll fix two issues: remove the muddy, off-palette ghost
+  toilets in the background, and move the high score to the bottom so it stops
+  overlapping the title.
+
+● Update(js\ui.js)
+  ⎿  Removed 10 lines
+      270      const t = game.clock;
+      271      TP.Renderer.prepareStars(99, 2000);
+      272      TP.Renderer.background(ctx, t * 12, t);
+      273 -    // drifting background toilets                            
+      274 -    for (let i = 0; i < 3; i++) {                             
+      275 -      const x = ((i * 137 + t * (6 + i * 3)) % 420) - 50;     
+      276 -      const y = 92 + i * 22 + Math.sin(t * 0.8 + i) * 3;      
+      277 -      const cv = TP.Sprites.toilet(14, i === 1 ? 'blue' : 'whi
+          -te', i % 2 ? 'L' : 'R');                                      
+      278 -      ctx.globalAlpha = 0.18;                                 
+      279 -      ctx.drawImage(cv, Math.round(W - x), Math.round(y));    
+      280 -      ctx.globalAlpha = 1;                                    
+      281 -    }                                                         
+      273      text(ctx, 'טלאותה ריינ לילג', W / 2, 8, P.white, { scale: 
+           3, shadow: P.red });
+      274      text(ctx, 'סמונמה', W / 2, 33, P.yellow, { scale: 3, shado
+           w: P.orange });
+      275      text(ctx, 'הניסרחה סכל עגהו הלסאל הלסאמ ץופק!', W / 2, 62,
+            P.cyan);
+      285 -    text(ctx, 'איש ' + pad(TP.Score.high), W - 4, 2, P.yellow,
+          - { align: 'right' });                                         
+      276  
+      277      // the host: a polite roll on a toilet, bowing to the play
+           er
+      278      const seatX = 30;
+
+● Update(js\ui.js)
+  ⎿  Added 6 lines, removed 6 lines
+      283      const li = Math.floor(t / 3.6) % TITLE_LINES.length;
+      284      if ((t % 3.6) > 1.9) TP.Renderer.speech(ctx, TITLE_LINES[l
+           i], seatX + 15, seatY, 0);
+      285  
+      286 -    menus.title.draw(ctx, 200, 78, 12, 150);                  
+      286 +    menus.title.draw(ctx, 200, 77, 12, 150);                  
+      287  
+      288 -    const blink = Math.floor(t * 2) % 2 === 0;                
+      288      if (game.touchMode) {
+      290 -      text(ctx, 'ליחתהל ידכ "קחשמ לחתה" לע ושיקה', W / 2, 152,
+          - blink ? P.light : P.grey);                                   
+      291 -      text(ctx, 'ךסמה לע הציפקו םיצח ירותפכ :קחשמה ןמזב', W / 
+          -2, 164, P.grey);                                              
+      289 +      text(ctx, 'ליחתהל ידכ "קחשמ לחתה" לע ושיקה', W / 2, 146,
+          + P.light);                                                    
+      290 +      text(ctx, 'ךסמה לע הציפקו םיצח ירותפכ :קחשמה ןמזב', W / 
+          +2, 157, P.grey);                                              
+      291      } else {
+      293 -      text(ctx, '← → / A D חוור  ·  הכילה / W / ↑ הציפק', W / 
+          -2, 152, P.light);                                             
+      294 -      text(ctx, 'P / ESC הריצע  ·  R שדחמ בלש  ·  M לילצ', W /
+          - 2, 164, P.grey);                                             
+      292 +      text(ctx, '← → / A D חוור  ·  הכילה / W / ↑ הציפק', W / 
+          +2, 146, P.light);                                             
+      293 +      text(ctx, 'P / ESC הריצע  ·  R שדחמ בלש  ·  M לילצ', W /
+          + 2, 157, P.grey);                                             
+      294      }
+      295 +    text(ctx, 'איש ' + pad(TP.Score.high), W / 2, 169, P.yello
+          +w);                                                           
+      296    }
+      297  
+      298    function drawHelp(ctx) {
+
+● Now a first gameplay check in the real browser with real keyboard events:
+  Enter → level intro → play, then run and jump.
+
+  Made 1 scratchpad edit +41, ran 1 shell command (ctrl+o to expand)
+
+● Confirmed the full gameplay loop works end-to-end with real keyboard input:
+  title→intro→play transition, audio trigger, movement, item pickup (+50),
+  toilet landing (+25), and correct life loss (3→2) when running off the edge.
+  Sharing screenshots below.
+
+  Read 3 files (ctrl+o to expand)
+
+● It's working nicely overall, but I spotted three fixes: move the level-1
+  tutorial hints out of the jump path, deepen wide toilet bowls so they don't
+  look flat, and add a debug flag to pause the real-time loop for deterministic
+  replay testing.
+
+● Update(js\levels.js)
+  ⎿  Added 4 lines, removed 3 lines
+      42        ],
+      43        hazards: [],
+      44        hints: [
+      45 -        { x: 52, y: 78, text: 'םיצח / A D - הכילה', touch: 'תפכ
+         -                                          ,} 'הכילה - םיצחה ירו
+      46 -        { x: 52, y: 90, text: 'חוור / W - הציפק', touch: 'ותפכה
+         -                                            ,} 'הציפק - לודגה ר
+      47 -        { x: 730, y: 74, text: 'בהזה תלסא!', touch: 'בהזה תלסא!
+         -' }                                                            
+      45 +        { x: 92, y: 30, text: '← → / A D - הכילה', touch: 'ותפכ
+         +                                           ,} 'הכילה - םיצחה יר
+      46 +        { x: 92, y: 42, text: 'חוור / W / ↑ - הציפק', touch: 'כ
+         +                                       ,} 'הציפק - "הציפק" רותפ
+      47 +        { x: 92, y: 54, text: 'רתוי ההובג הציפקל וקיזחה', touch
+         +                                ,} 'רתוי ההובג הציפקל וקיזחה' :
+      48 +        { x: 730, y: 50, text: 'בלשה ףוס = בהזה תלסא!', touch: 
+         +                                      } '!בלשה ףוס = בהזה תלסא'
+      49        ]
+      50      },
+      51  
+
+● Update(js\sprites.js)
+  ⎿  Added 19 lines, removed 17 lines
+      273      rect(T + 1, L + 1, w - 2, 1, pal.water);
+      274      rect(T + w - 1, L + 1, 1, 1, pal.seat);
+      275      rect(T, L + 2, w, 1, pal.seatShade);
+      276 -    // Bowl: tapers towards the pedestal                      
+      277 -    const k = w / 22;                                         
+      278 -    const frontIn = [0, 1, 2, 3, 4, 6, 8];                    
+      279 -    const backIn = [0, 0, 0, 1, 2, 3, 4];                     
+      280 -    for (let r = 0; r < 7; r++) {                             
+      281 -      const x0 = T + Math.round(backIn[r] * k);               
+      282 -      const x1 = T + w - 1 - Math.round(frontIn[r] * k);      
+      276 +    // Bowl: tapers towards the pedestal; deeper for bigger to
+          +ilets                                                         
+      277 +    const rows = bowlRows(w);                                 
+      278 +    for (let r = 0; r < rows; r++) {                          
+      279 +      const f = r / (rows - 1);                               
+      280 +      const frontIn = Math.round(w * 0.36 * f * f + w * 0.04 *
+          + f);                                                          
+      281 +      const backIn = Math.round(w * 0.18 * Math.max(0, f - 0.3
+          +) / 0.7);                                                     
+      282 +      const x0 = T + backIn;                                  
+      283 +      const x1 = T + w - 1 - frontIn;                         
+      284        if (x1 < x0) continue;
+      284 -      rect(x0, L + 3 + r, x1 - x0 + 1, 1, r >= 5 ? pal.shade :
+          - pal.body);                                                   
+      285 +      rect(x0, L + 3 + r, x1 - x0 + 1, 1, r >= rows - 2 ? pal.
+          +shade : pal.body);                                            
+      286        rect(x1, L + 3 + r, 1, 1, pal.shade);
+      287      }
+      287 -    rect(T + w - 3 - Math.round(k), L + 4, 1, 1, pal.hi || pal
+          -.body);                                                       
+      288 +    rect(T + w - 4, L + 4, 1, 1, pal.hi || pal.body);         
+      289      // Pedestal and base
+      289 -    const p0 = T + Math.round(w * 0.22);                      
+      290 -    const p1 = T + Math.round(w * 0.58);                      
+      291 -    rect(p0, L + 10, p1 - p0 + 1, 2, pal.body);               
+      292 -    rect(p1, L + 10, 1, 2, pal.shade);                        
+      293 -    const b0 = T + Math.round(w * 0.1);                       
+      294 -    const b1 = T + Math.round(w * 0.7);                       
+      295 -    rect(b0, L + 12, b1 - b0 + 1, 1, pal.body);               
+      296 -    rect(b0, L + 13, b1 - b0 + 1, 1, pal.shade);              
+      290 +    const py = L + 3 + rows;                                  
+      291 +    const p0 = T + Math.round(w * 0.2);                       
+      292 +    const p1 = T + Math.round(w * 0.56);                      
+      293 +    rect(p0, py, p1 - p0 + 1, 2, pal.body);                   
+      294 +    rect(p1, py, 1, 2, pal.shade);                            
+      295 +    const b0 = T + Math.round(w * 0.08);                      
+      296 +    const b1 = T + Math.round(w * 0.68);                      
+      297 +    rect(b0, py + 2, b1 - b0 + 1, 1, pal.body);               
+      298 +    rect(b0, py + 3, b1 - b0 + 1, 1, pal.shade);              
+      299      if (pal.crack) {
+      300        const c = pal.crack;
+      301        const pts = [[0.62, 2], [0.5, 4], [0.64, 6], [0.52, 8], 
+           [0.6, 9]];
+
+● Update(js\sprites.js)
+  ⎿  Added 4 lines
+      255      geyser: { body: P.white, shade: P.grey, dark: P.dimGrey, s
+           eat: P.white, seatShade: P.light, water: P.blue, hi: '#ffffff'
+            }
+      256    };
+      257  
+      258 +  const bowlRows = (w) => Math.max(6, Math.min(12, 4 + Math.ro
+          +und(w * 0.14)));                                              
+      259 +  /** Height below the seat top (seat ring + bowl + pedestal +
+          + base). */                                                    
+      260 +  const belowSeat = (w) => 3 + bowlRows(w) + 4;               
+      261 +                                                              
+      262    function drawToilet(g, w, pal) {
+      263      const T = TANK;
+      264      const L = RISE;
+
+● Update(js\sprites.js)
+  ⎿  Added 1 line, removed 1 line
+      322      const key = w + '|' + variant + '|' + facing;
+      323      let c = toiletCache.get(key);
+      324      if (!c) {
+      325 -      c = makeCanvas(TANK + w, RISE + 14);                    
+      325 +      c = makeCanvas(TANK + w, RISE + belowSeat(w));          
+      326        drawToilet(c.getContext('2d'), w, TOILET_PAL[variant] ||
+            TOILET_PAL.white);
+      327        if (facing === 'L') c = flipH(c);
+      328        toiletCache.set(key, c);
+
+● Update(js\sprites.js)
+  ⎿  Added 1 line, removed 1 line
+      334      makeCanvas, fromRows, flipH, rot90,
+      335      player, deadSpin, PW, PH, ANCHOR_R, ANCHOR_L,
+      336      sheet, bubble, star, plunger, soap, sign, crown, prop, lif
+           eIcon, tube,
+      337 -    toilet, TOILET_PAL                                        
+      337 +    toilet, TOILET_PAL, belowSeat                             
+      338    };
+      339  })(window.TP = window.TP || {});
+
+● The renderer positions the propeller and drips under the toilet base, so it
+  needs the new variable height:
+
+● Update(js\renderer.js)
+  ⎿  Added 5 lines, removed 4 lines
+      78        const seatX = Math.round(t.x - camX + (t.state === 'shake
+          ' ? (frame % 4 < 2 ? 1 : -1) : 0));
+      79        const seatY = Math.round(t.y + t.fallY);
+      80        const lidX = t.f === 'R' ? seatX - TANK : seatX + t.w;
+      81 -      const baseCx = t.f === 'R' ? seatX + Math.round(t.w * 0.4
+         -) : seatX + t.w - Math.round(t.w * 0.4) - 1;                   
+      81 +      const baseCx = t.f === 'R' ? seatX + Math.round(t.w * 0.3
+         +8) : seatX + t.w - Math.round(t.w * 0.38) - 1;                 
+      82 +      const bottom = seatY + TP.Sprites.belowSeat(t.w);        
+      83  
+      84        if (t.type === 'moving') {
+      85          const pr = TP.Sprites.prop[frame % 8 < 4 ? 0 : 1];
+      85 -        ctx.drawImage(pr, baseCx - 4, seatY + 14);             
+      86 +        ctx.drawImage(pr, baseCx - 4, bottom);                 
+      87        }
+      88        if (t.type === 'slippery') {
+      89          ctx.drawImage(TP.Sprites.sign, lidX, seatY - RISE - 8);
+      90          // drips under the bowl
+      91          const k = (time * 1.4 + t.id * 0.37) % 1;
+      92          ctx.fillStyle = P.cyan;
+      92 -        ctx.fillRect(baseCx + 2, seatY + 13 + Math.floor(k * 14
+         -), 1, 2);                                                      
+      93 +        ctx.fillRect(baseCx + 2, bottom - 1 + Math.floor(k * 14
+         +), 1, 2);                                                      
+      94          const k2 = (time * 1.4 + t.id * 0.37 + 0.5) % 1;
+      94 -        ctx.fillRect(baseCx - 3, seatY + 11 + Math.floor(k2 * 1
+         -6), 1, 1);                                                     
+      95 +        ctx.fillRect(baseCx - 3, bottom - 3 + Math.floor(k2 * 1
+         +6), 1, 1);                                                     
+      96        }
+      97        if (t.type === 'golden') {
+      98          if (t.throne) ctx.drawImage(TP.Sprites.crown, lidX - 1,
+           seatY - RISE - 5);
+● Update(js\game.js)
+  ⎿  Added 1 line, removed 1 line
+      472          const p = G.world.player;
+      473          if (Input.take('pause')) { G.actions.pause(); break; }
+      474          if (Input.take('restart') && p.state === 'play') { res
+           tartLevel(); break; }
+      475 -        runSim(dt);                                           
+      475 +        if (!G.debugFreeze) runSim(dt);                       
+      476          updateEffects(dt);
+      477          break;
+      478        }
+
+● Update(js\game.js)
+  ⎿  Added 1 line, removed 1 line
+      486          tl.timer += dt;
+      487          if (!tl.done && tl.timer > 0.55 * (tl.shown + 1)) reve
+           alTally();
+      488          if (G.stateT > 0.4 && (Input.take('confirm') || Input.
+           take('jump'))) confirmComplete();
+      489 -        runSim(dt);                                           
+      489 +        if (!G.debugFreeze) runSim(dt);                       
+      490          updateEffects(dt);
+      491          break;
+      492        }
+
+● Now a level-overview tool. It renders each full level through the real
+  renderer, stitched into one image, so I can review every layout by eye:
+
+  Made 1 scratchpad edit +69, read 2 files, ran 1 shell command (ctrl+o to expand)
+
+● The overviews look solid overall, so now I'll tune the tight spots the bot
+  flagged: widening/spacing toilets and slowing a geyser in L3, closing the 66px
+  gap in L4 by repositioning T9 and the plunger, and easing the geyser, mover
+  swing, and soap timing in L5.
+
+● Update(js\levels.js)
+  ⎿  Added 11 lines, removed 11 lines
+      88      {
+      89        name: 'בוטר ,תוריהז!',
+      90        tip: 'וצפק זאו ...ועגריי םימהש וכח!',
+      91 -      width: 1210,                                             
+      91 +      width: 1200,                                             
+      92        start: 0,
+      93        toilets: [
+      94          T(30, 124, 34, 'R'),
+     ...
+       98          T(298, 116, 26, 'R', { geyser: { period: 2.6, offset: 
+           1.3 } }),
+       99          T(362, 112, 26, 'L', { geyser: { period: 2.6, offset: 
+           0 } }),
+      100          T(436, 104, 40, 'R', { c: 'blue' }),
+      101 -        T(512, 118, 26, 'R'),                                 
+      101 +        T(506, 118, 26, 'R'),                                 
+      102          T(578, 104, 24, 'L', { geyser: { period: 2.4, offset: 
+           0.6 } }),
+      103          T(646, 94, 24, 'R', { c: 'blue' }),
+      104          T(712, 110, 44, 'R'),
+      105 -        T(792, 120, 26, 'R', { geyser: { period: 2.2, offset: 
+          -0.3 } }),                                                     
+      106 -        T(858, 112, 30, 'L', { type: 'slippery' }),           
+      107 -        T(930, 104, 30, 'R', { type: 'slippery' }),           
+      108 -        T(1000, 112, 26, 'R', { c: 'blue' }),                 
+      109 -        T(1066, 104, 26, 'L', { geyser: { period: 2.6, offset:
+          - 1.0 } }),                                                    
+      110 -        T(1136, 100, 40, 'R', { type: 'golden' })             
+      105 +        T(792, 120, 26, 'R', { geyser: { period: 2.6, offset: 
+          +0.3 } }),                                                     
+      106 +        T(846, 114, 40, 'R', { type: 'slippery' }),           
+      107 +        T(918, 108, 40, 'R', { type: 'slippery' }),           
+      108 +        T(990, 112, 26, 'R', { c: 'blue' }),                  
+      109 +        T(1050, 104, 26, 'L', { geyser: { period: 2.6, offset:
+          + 1.0 } }),                                                    
+      110 +        T(1124, 100, 40, 'R', { type: 'golden' })             
+      111        ],
+      112        items: [
+      113          I(80, 100), I(142, 98), I(174, 112, 'bubble'), I(214, 
+           92), I(280, 94),
+      114 -        I(344, 92, 'bubble'), I(420, 84), I(456, 96), I(492, 9
+          -2), I(560, 90),                                               
+      115 -        I(628, 74, 'star'), I(694, 86), I(734, 102, 'bubble'),
+          - I(776, 94), I(840, 96),                                      
+      116 -        I(912, 88, 'bubble'), I(984, 90), I(1048, 86), I(1116,
+          - 80, 'star')                                                  
+      114 +        I(344, 92, 'bubble'), I(420, 84), I(456, 96), I(488, 9
+          +2), I(556, 90),                                               
+      115 +        I(628, 74, 'star'), I(694, 86), I(734, 102, 'bubble'),
+          + I(771, 94), I(830, 98),                                      
+      116 +        I(866, 104, 'bubble'), I(898, 92), I(970, 92), I(1033,
+          + 90), I(1103, 70, 'star')                                     
+      117        ],
+      118        hazards: [
+      119          { k: 'soap', toilet: 6, speed: 26, phase: 0.5 },
+
+● Update(js\levels.js)
+  ⎿  Added 21 lines, removed 21 lines
+      127      {
+      128        name: 'העונתב תולסא',
+      129        tip: 'לוכה אוה ןומזתה .תוקודס תולסאו תוזז תולסא!',
+      130 -      width: 1320,                                            
+      130 +      width: 1300,                                            
+      131        start: 0,
+      132        toilets: [
+      133          T(30, 120, 34, 'R'),
+      134          T(100, 114, 28, 'R', { c: 'blue' }),
+      135          T(178, 114, 28, 'R', { type: 'moving', move: { ax: 22,
+            period: 3.4 } }),
+      136 -        T(262, 110, 26, 'L'),                                 
+      137 -        T(326, 118, 26, 'R', { type: 'unstable' }),           
+      138 -        T(392, 110, 26, 'R', { c: 'blue' }),                  
+      139 -        T(470, 104, 26, 'L', { type: 'moving', move: { ax: 28,
+          - period: 3.0 } }),                                            
+      140 -        T(560, 112, 26, 'R', { type: 'moving', move: { ax: 26,
+          - period: 3.0, phase: Math.PI } }),                            
+      141 -        T(642, 100, 28, 'R'),                                 
+      142 -        T(736, 108, 26, 'L', { type: 'unstable' }),           
+      143 -        T(800, 100, 26, 'R', { type: 'unstable' }),           
+      144 -        T(866, 110, 28, 'R', { c: 'blue' }),                  
+      145 -        T(948, 100, 26, 'R', { type: 'moving', move: { ax: 30,
+          - period: 3.0 } }),                                            
+      146 -        T(1034, 96, 26, 'L'),                                 
+      147 -        T(1110, 108, 26, 'R', { type: 'moving', move: { ax: 24
+          -, period: 2.8, phase: 1.2 } }),                               
+      148 -        T(1188, 100, 26, 'R', { c: 'blue' }),                 
+      149 -        T(1252, 96, 40, 'R', { type: 'golden' })              
+      136 +        T(250, 110, 26, 'L'),                                 
+      137 +        T(318, 118, 26, 'R', { type: 'unstable' }),           
+      138 +        T(386, 110, 26, 'R', { c: 'blue' }),                  
+      139 +        T(466, 104, 26, 'L', { type: 'moving', move: { ax: 28,
+          + period: 3.0 } }),                                            
+      140 +        T(556, 112, 26, 'R', { type: 'moving', move: { ax: 26,
+          + period: 3.0, phase: Math.PI } }),                            
+      141 +        T(638, 100, 28, 'R'),                                 
+      142 +        T(702, 108, 26, 'L', { type: 'unstable' }),           
+      143 +        T(770, 100, 26, 'R', { type: 'unstable' }),           
+      144 +        T(836, 110, 28, 'R', { c: 'blue' }),                  
+      145 +        T(918, 100, 26, 'R', { type: 'moving', move: { ax: 30,
+          + period: 3.0 } }),                                            
+      146 +        T(1004, 96, 26, 'L'),                                 
+      147 +        T(1082, 108, 26, 'R', { type: 'moving', move: { ax: 24
+          +, period: 2.8, phase: 1.2 } }),                               
+      148 +        T(1160, 100, 26, 'R', { c: 'blue' }),                 
+      149 +        T(1224, 96, 40, 'R', { type: 'golden' })              
+      150        ],
+      151        items: [
+      152 -        I(82, 98), I(140, 94), I(192, 96, 'bubble'), I(240, 88
+          -), I(306, 94),                                                
+      153 -        I(372, 92), I(430, 86), I(516, 84, 'star'), I(604, 88)
+          -, I(690, 70, 'star'),                                         
+      154 -        I(720, 88), I(784, 84), I(848, 88), I(910, 84), I(994,
+          - 80, 'bubble'),                                               
+      155 -        I(1074, 80), I(1150, 86), I(1232, 82)                 
+      152 +        I(82, 98), I(140, 94), I(192, 96, 'bubble'), I(232, 90
+          +), I(300, 94),                                                
+      153 +        I(366, 92), I(426, 86), I(512, 84, 'star'), I(600, 88)
+          +, I(684, 44, 'star'),                                         
+      154 +        I(715, 96), I(783, 88), I(815, 90), I(890, 86), I(974,
+          + 84, 'bubble'),                                               
+      155 +        I(1048, 84), I(1140, 86), I(1202, 84)                 
+      156        ],
+      157        hazards: [
+      158 -        { k: 'plunger', x: 706, y: 74, ay: 22, period: 2.4 }, 
+      159 -        { k: 'plunger', x: 1072, y: 62, ax: 26, period: 3.2 } 
+      158 +        { k: 'plunger', x: 684, y: 72, ay: 20, period: 2.6 }, 
+      159 +        { k: 'plunger', x: 1044, y: 62, ax: 26, period: 3.2 } 
+      160        ]
+      161      },
+      162  
+
+● Update(js\levels.js)
+  ⎿  Added 2 lines, removed 2 lines
+      175          T(254, 96, 24, 'L', { type: 'unstable' }),
+      176          T(318, 112, 26, 'R', { c: 'blue' }),
+      177          T(388, 100, 40, 'R', { c: 'blue' }),
+      178 -        T(466, 90, 24, 'L', { geyser: { period: 2.6, offset: 1
+          -.2 } }),                                                      
+      179 -        T(544, 104, 24, 'R', { type: 'moving', move: { ax: 32,
+          - period: 2.6 } }),                                            
+      178 +        T(466, 90, 24, 'L', { geyser: { period: 3.2, offset: 1
+          +.2 } }),                                                      
+      179 +        T(536, 104, 24, 'R', { type: 'moving', move: { ax: 26,
+          + period: 2.6 } }),                                            
+      180          T(628, 118, 28, 'R', { type: 'slippery' }),
+      181          T(694, 104, 24, 'L', { type: 'unstable' }),
+      182          T(756, 92, 24, 'R', { type: 'unstable' }),
+
+● Update(js\levels.js)
+  ⎿  Added 1 line, removed 1 line
+      184          T(902, 98, 24, 'L', { type: 'moving', move: { ax: 28, 
+           period: 2.4 } }),
+      185          T(986, 110, 26, 'R', { geyser: { period: 2.4, offset: 
+           0.2 } }),
+      186          T(1052, 100, 40, 'R'),
+      187 -        T(1136, 92, 24, 'R', { type: 'moving', move: { ax: 30,
+          - period: 2.8, phase: 2 } }),                                  
+      187 +        T(1128, 92, 24, 'R', { type: 'moving', move: { ax: 30,
+          + period: 2.8, phase: 2 } }),                                  
+      188          T(1220, 104, 24, 'L', { type: 'unstable' }),
+      189          T(1284, 96, 28, 'R', { type: 'slippery' }),
+      190          T(1362, 88, 24, 'R', { type: 'moving', move: { ax: 26,
+            period: 2.4 } }),
+
+● Update(js\levels.js)
+  ⎿  Added 1 line, removed 1 line
+      202          { k: 'plunger', x: 352, y: 76, ay: 20, period: 2.2 },
+      203          { k: 'soap', toilet: 5, speed: 34, phase: 0.2 },
+      204          { k: 'plunger', x: 862, y: 56, ax: 28, period: 2.8 },
+      205 -        { k: 'soap', toilet: 14, speed: 40, phase: 0.7 },     
+      205 +        { k: 'soap', toilet: 14, speed: 34, phase: 0.7 },     
+      206          { k: 'plunger', x: 1484, y: 70, ay: 22, period: 2.0, p
+           hase: 1 }
+      207        ]
+      208      }
+
+● Re-running the bot with timing windows on levels 3–5 in the background:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● I'll write a full automated browser test covering the brief's checklist:
+  replaying the bot's solutions through the real game loop across all 5 levels,
+  plus death/respawn, game over, restart, pause, mute, high-score persistence,
+  multi-touch on an emulated phone, and various screen sizes.
+
+● Write(tools\browser-test.js)
+  ⎿  Wrote 482 lines to tools\browser-test.js
+      1 #!/usr/bin/env node
+      2 /* ==========================================================
+      3    browser-test.js — optional end-to-end test in a real browser.
+      4
+      5    Drives the actual game in headless Chrome/Edge: real key
+      6    presses, touch events, menus, all five levels (replaying the
+      7    solutions found by verify-levels.js through the game loop),
+      8    death / game over / victory, pause, mute, high-score
+      9    persistence and responsive layout.
+     … +602 lines (ctrl+o to expand)
+
+● Background command "Verify retuned levels 3-5 with timing windows" completed
+(exit code 0)
+
+  Read 1 file (ctrl+o to expand)
+
+● L3 and L4 are now on target, but L5 still has two tight spots: a 3-frame final
+  throne jump complicated by a geyser plus bobbing plunger, and a 5-frame
+  window from a fast 67 px/s mover. I'll remove the geyser so the final jump is
+  a fair plunger timing challenge, slow the mover, and pull the following toilet
+  closer.
+
+● Update(js\levels.js)
+  ⎿  Added 3 lines, removed 3 lines
+      184          T(902, 98, 24, 'L', { type: 'moving', move: { ax: 28, 
+           period: 2.4 } }),
+      185          T(986, 110, 26, 'R', { geyser: { period: 2.4, offset: 
+           0.2 } }),
+      186          T(1052, 100, 40, 'R'),
+      187 -        T(1128, 92, 24, 'R', { type: 'moving', move: { ax: 30,
+          - period: 2.8, phase: 2 } }),                                  
+      188 -        T(1220, 104, 24, 'L', { type: 'unstable' }),          
+      187 +        T(1128, 92, 24, 'R', { type: 'moving', move: { ax: 26,
+          + period: 3.0, phase: 2 } }),                                  
+      188 +        T(1210, 104, 24, 'L', { type: 'unstable' }),          
+      189          T(1284, 96, 28, 'R', { type: 'slippery' }),
+      190          T(1362, 88, 24, 'R', { type: 'moving', move: { ax: 26,
+            period: 2.4 } }),
+      191 -        T(1442, 104, 26, 'L', { geyser: { period: 2.6, offset:
+          - 0.9 } }),                                                    
+      191 +        T(1442, 104, 26, 'L', { c: 'blue' }),                 
+      192          T(1514, 98, 56, 'R', { type: 'golden', throne: true })
+      193        ],
+      194        items: [
+
+● Update(js\levels.js)
+  ⎿  Added 1 line, removed 1 line
+      203          { k: 'soap', toilet: 5, speed: 34, phase: 0.2 },
+      204          { k: 'plunger', x: 862, y: 56, ax: 28, period: 2.8 },
+      205          { k: 'soap', toilet: 14, speed: 34, phase: 0.7 },
+      206 -        { k: 'plunger', x: 1484, y: 70, ay: 22, period: 2.0, p
+          -hase: 1 }                                                     
+      206 +        { k: 'plunger', x: 1491, y: 72, ay: 20, period: 2.4, p
+          +hase: 1 }                                                     
+      207        ]
+      208      }
+      209    ];
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● L5's timing window is now min 8/avg 17.4 frames, with the final throne jump at
+  13 frames—difficulty still climbs in levels 4-5 due to stacked moving parts
+  and hazards. Now I'll save the bot's solutions and run the full browser test
+  suite.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The game is fully built with all 5 levels verified completable, and I'm now
+  running the automated browser tests. The first failure turned out to be a bug
+  in my test itself (menu selection resets on return), so I'm fixing that now.
+
+● Update(tools\browser-test.js)
+  ⎿  Added 2 lines, removed 2 lines
+      151    await sleep(120);
+      152    s = await state(page);
+      153    check('Escape returns to the main menu', s.state === 'title'
+           , s.state);
+      154 -  await page.keyboard.press('ArrowUp');                       
+      155 -  await sleep(80);                                            
+      154 +  idx = await page.evaluate(() => TP.UI.menus.title.index);   
+      155 +  check('menu selection is back on "קחשמ לחתה"', idx === 0, 'i
+          +ndex ' + idx);                                                
+      156    await page.keyboard.press('Enter');          // "קחשמ לחתה"
+      157    await sleep(150);
+      158    s = await state(page);
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● 53 of 63 checks pass with zero JS errors, and all 10 failures trace back to
+  one cause: Enter presses during the 0.4s tally guard period were queued
+  instead of discarded, muddling the flow. I'll fix the game to discard presses
+  during the guard window and adjust the test to wait like a real player would.
+
+● Update(js\game.js)
+  ⎿  Added 3 lines, removed 1 line
+      485          const tl = G.tally;
+      486          tl.timer += dt;
+      487          if (!tl.done && tl.timer > 0.55 * (tl.shown + 1)) reve
+           alTally();
+      488 -        if (G.stateT > 0.4 && (Input.take('confirm') || Input.
+          -take('jump'))) confirmComplete();                             
+      488 +        // presses during the first moment are discarded, so m
+          +ashing can't skip the tally                                   
+      489 +        const go = Input.take('confirm') | Input.take('jump');
+      490 +        if (go && G.stateT > 0.4) confirmComplete();          
+      491          if (!G.debugFreeze) runSim(dt);
+      492          updateEffects(dt);
+      493          break;
+
+● Update(js\game.js)  ⎿  Added 4 lines, removed 3 lines
+      464          UI.updateMenus();
+      465          if (Input.take('back')) G.actions.go('title');
+      466          break;
+      467 -      case 'intro':                                           
+      468 -        if (G.stateT > 0.25 && (Input.take('confirm') || Input
+          -.take('jump'))) beginPlay();                                  
+      469 -        else if (G.stateT > 2.8) beginPlay();                 
+      467 +      case 'intro': {                                         
+      468 +        const go = Input.take('confirm') | Input.take('jump');
+      469 +        if ((go && G.stateT > 0.25) || G.stateT > 2.8) beginPl
+          +ay();                                                         
+      470          break;
+      471 +      }                                                       
+      472        case 'play': {
+      473          const p = G.world.player;
+      474          if (Input.take('pause')) { G.actions.pause(); break; }
+
+● Update(tools\browser-test.js)
+  ⎿  Added 4 lines, removed 3 lines
+      318      check('level ' + (li + 1) + ' completed', r.ok, JSON.strin
+           gify(r));
+      319      if (li === 0 || li === 4) await shot(page, '08-complete-L'
+            + (li + 1));
+      320      check('level ' + (li + 1) + ' added points (items/landings
+           /bonus)', r.score > before.score, before.score + ' -> ' + r.sc
+           ore);
+      321 -    await page.keyboard.press('Enter');   // reveal the tally 
+          -at once                                                       
+      322 -    await sleep(120);                                         
+      321 +    await sleep(2000);                    // let the tally cou
+          +nt up like a player would watch it                            
+      322 +    const tallyDone = await page.evaluate(() => TP.game.tally 
+          +&& TP.game.tally.done);                                       
+      323 +    check('level ' + (li + 1) + ' tally screen finished counti
+          +ng', tallyDone === true);                                     
+      324      await page.keyboard.press('Enter');   // continue
+      324 -    await sleep(200);                                         
+      325 +    await waitFor(page, () => TP.game.state !== 'complete', nu
+          +ll, 2000);                                                    
+      326      s = await state(page);
+      327      if (li < 4) {
+      328        check('advances to level ' + (li + 2), s.state === 'intr
+           o' && s.li === li + 1, s.state + ' li=' + s.li);
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Levels 1-2 now pass correctly, and I found that level 3's failure was just a
+  test-ordering bug — idle frames between levels threw off geyser timing, not an
+  actual level issue. I'll fix it by keeping the sim frozen throughout and
+  taking mid-level screenshots by splitting the replay instead.
+
+● Update(tools\browser-test.js)
+  ⎿  Added 8 lines, removed 4 lines
+      80    return false;
+      81  }
+      82  
+      83 -/** In-page replay of a bot solution through the real game loop
+         -. */                                                           
+      84 -function replayInPage(li, actions) {                           
+      83 +/**                                                            
+      84 + * In-page replay of a bot solution through the real game loop 
+      85 + * (G.debug.simStep = the same per-step code the game runs ever
+         +y frame).                                                      
+      86 + * Runs actions[from, to); the real-time loop must be frozen me
+         +anwhile.                                                       
+      87 + */                                                            
+      88 +function replayInPage(li, actions, from, to) {                 
+      89    const G = TP.game;
+      86 -  G.debugFreeze = true;                                        
+      90    const idle = { left: false, right: false, jumpHeld: false, ju
+          mpPressed: false };
+      91    const step = (inp) => G.debug.simStep(inp);
+      89 -  for (const a of actions) {                                   
+      92 +  const last = to == null ? actions.length : to;               
+      93 +  for (const a of actions.slice(from || 0, last)) {            
+      94      const preFrames = a.wait + a.pre;
+      95      let frames = 0;
+      96      const inputs = [];
+
+● Update(tools\browser-test.js)
+  ⎿  Added 1 line, removed 1 line
+      112      if (ended) break;
+      113      for (let i = 0; i < 4; i++) step(idle);
+      114    }
+      115 +  if (last < actions.length) return { ok: true, partial: true 
+          +};                                                            
+      116    // let the victory bow play until the tally screen opens
+      117    for (let i = 0; i < 400 && G.state === 'play'; i++) step(idl
+           e);
+      117 -  G.debugFreeze = false;                                      
+      118    return { ok: G.state === 'complete', state: G.state, score: 
+           TP.Score.score, lives: TP.Score.lives, taken: G.world.items.fi
+           lter((i) => i.taken).length, items: G.world.items.length };
+      119  }
+      120  
+
+● Update(tools\browser-test.js)
+  ⎿  Added 14 lines, removed 2 lines
+      312  
+      313    // ---------------------------------------------------------
+           ----
+      314    console.log('\n[6] All five levels, played through the real 
+           game loop');
+      315 -  await page.evaluate(() => { TP.Score.reset(); TP.game.debug.
+          -startLevel(0); TP.game.debug.beginPlay(); });                 
+      315 +  // Freeze the real-time loop for this section: every simulat
+          +ion step comes                                                
+      316 +  // from the recorded inputs, so timing-sensitive levels repl
+          +ay exactly.                                                   
+      317 +  await page.evaluate(() => { TP.game.debugFreeze = true; TP.S
+          +core.reset(); TP.game.debug.startLevel(0); TP.game.debug.begin
+          +Play(); });                                                   
+      318    let victory = false;
+      319    for (let li = 0; li < 5; li++) {
+      320      const sol = solutions[li];
+      321      if (!sol) { check('solution for level ' + (li + 1), false,
+            'missing'); break; }
+      322      const before = await state(page);
+      321 -    const r = await page.evaluate(replayInPage, li, sol);     
+      323 +    let r;                                                    
+      324 +    if (li >= 1) {                                            
+      325 +      // stop half-way for an in-game screenshot, then finish 
+          +the level                                                     
+      326 +      const half = Math.floor(sol.length / 2);                
+      327 +      await page.evaluate(replayInPage, li, sol, 0, half);    
+      328 +      await page.evaluate(() => TP.game.debug.render());      
+      329 +      await shot(page, '10-play-L' + (li + 1));               
+      330 +      r = await page.evaluate(replayInPage, li, sol, half, nul
+          +l);                                                           
+      331 +    } else {                                                  
+      332 +      r = await page.evaluate(replayInPage, li, sol, 0, null);
+      333 +    }                                                         
+      334      check('level ' + (li + 1) + ' completed', r.ok, JSON.strin
+           gify(r));
+      335      if (li === 0 || li === 4) await shot(page, '08-complete-L'
+            + (li + 1));
+      336      check('level ' + (li + 1) + ' added points (items/landings
+           /bonus)', r.score > before.score, before.score + ' -> ' + r.sc
+           ore);
+
+● Update(tools\browser-test.js)
+  ⎿  Added 2 lines, removed 12 lines
+      343      if (li < 4) {
+      344        check('advances to level ' + (li + 2), s.state === 'intr
+           o' && s.li === li + 1, s.state + ' li=' + s.li);
+      345        if (li === 2) await shot(page, '09-intro-L4');
+      346 -      await page.evaluate(() => TP.game.debug.beginPlay());   
+      347 -      await sleep(100);                                       
+      348 -      if (li === 1 || li === 3) {                             
+      349 -        // mid-level screenshots with some action going on    
+      350 -        await page.evaluate((li) => {                         
+      351 -          const G = TP.game; G.debugFreeze = true;            
+      352 -          const idle = { left: false, right: false, jumpHeld: 
+          -false, jumpPressed: false };                                  
+      353 -          for (let i = 0; i < 20; i++) G.debug.simStep(idle); 
+      354 -          G.debugFreeze = false;                              
+      355 -        }, li);                                               
+      356 -        await shot(page, '10-play-L' + (li + 2));             
+      357 -      }                                                       
+      346 +      await page.evaluate(() => { if (TP.game.state === 'intro
+          +') TP.game.debug.beginPlay(); });                             
+      347      } else {
+      348        victory = s.state === 'victory';
+      349        check('final victory screen after level 5', victory, s.s
+           tate);
+     ...
+      351        await shot(page, '11-victory');
+      352      }
+      353    }
+      354 +  await page.evaluate(() => { TP.game.debugFreeze = false; });
+      355    const finalScore = (await state(page)).score;
+      356    const finalHigh = (await state(page)).high;
+      357    check('high score updated', finalHigh >= finalScore && final
+           High > 0, 'score ' + finalScore + ' high ' + finalHigh);
+
+● Re-running the browser suite with the corrected test flow:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● All 68 checks passed with zero JS errors—the game runs cleanly from level 1 to
+  the victory screen, even correctly awarding an extra life at 10,000 points.
+  Now I'll visually review the screenshots captured during the test.
+
+  Read 4 files (ctrl+o to expand)
+
+● Gameplay elements all look correct, but on the victory screen the "בוש קחש"
+  text is hard to read against the golden throne, so I'll re-lay out that menu.
+  Now checking the remaining screens.
+
+  Read 4 files (ctrl+o to expand)
+
+● I found issues with the game over screen (speech bubble overlapping text), the
+  portrait hint's broken ↻ symbol, and the victory layout — I'll fix all three
+  now.
+
+● Update(js\ui.js)
+  ⎿  Added 8 lines, removed 8 lines
+      428      TP.Renderer.prepareStars(7, 2000);
+      429      TP.Renderer.background(ctx, 0, game.clock);
+      430      const shake = t < 0.6 ? Math.round(Math.sin(t * 60) * 2) :
+            0;
+      431 -    text(ctx, 'ריינה רמגנ!', W / 2 + shake, 14, P.red, { scale
+          -: 3, shadow: P.dkRed });                                      
+      432 -    text(ctx, 'רמגנ קחשמה', W / 2, 42, P.white, { scale: 2 });
+      431 +    text(ctx, 'ריינה רמגנ!', W / 2 + shake, 10, P.red, { scale
+          +: 3, shadow: P.dkRed });                                      
+      432 +    text(ctx, 'רמגנ קחשמה', W / 2, 38, P.white, { scale: 2 });
+      433      // the sad, empty cardboard tube
+      434 -    ctx.drawImage(TP.Sprites.tube, W / 2 - 8, 62);            
+      435 -    if (t > 0.8) TP.Renderer.speech(ctx, 'ינה יל רמגנ ...החילס
+          -                                           ;)W / 2, 78, 0 ,'רי
+      436 -    text(ctx, 'דוקינ ' + pad(TP.Score.score), W / 2 + 50, 92, 
+          -P.white);                                                     
+      437 -    text(ctx, 'איש ' + pad(TP.Score.high), W / 2 - 50, 92, P.y
+          -ellow);                                                       
+      438 -    if (TP.Score.newHigh && Math.floor(game.clock * 4) % 2 ===
+          - 0) text(ctx, 'שדח איש!', W / 2, 104, P.green);               
+      439 -    menus.gameover.draw(ctx, W / 2, 120, 14, 160);            
+      434 +    ctx.drawImage(TP.Sprites.tube, W / 2 - 8, 79);            
+      435 +    if (t > 0.8) TP.Renderer.speech(ctx, 'ינה יל רמגנ ...החילס
+          +                                           ;)W / 2, 96, 0 ,'רי
+      436 +    text(ctx, 'דוקינ ' + pad(TP.Score.score), W / 2 + 50, 104,
+          + P.white);                                                    
+      437 +    text(ctx, 'איש ' + pad(TP.Score.high), W / 2 - 50, 104, P.
+          +yellow);                                                      
+      438 +    if (TP.Score.newHigh && Math.floor(game.clock * 4) % 2 ===
+          + 0) text(ctx, 'שדח איש!', W / 2, 115, P.green);               
+      439 +    menus.gameover.draw(ctx, W / 2, 130, 14, 160);            
+      440    }
+      441  
+      442    // confetti for the final victory
+
+● Update(js\ui.js)
+  ⎿  Added 2 lines, removed 2 lines
+      453          ctx.fillRect(Math.round(W / 2 + Math.cos(a) * r), Math
+           .round(132 + Math.sin(a) * r * 0.7), 2, 2);
+      454        }
+      455      }
+      456 -    // the porcelain throne, double size                      
+      456 +    // the porcelain throne, double size (bottom at y=152, men
+          +u below it)                                                   
+      457      const thr = TP.Sprites.toilet(56, 'gold', 'R');
+      458      const ox = Math.round(W / 2 - thr.width);
+      459 -    const oy = 108;                                           
+      459 +    const oy = 152 - thr.height * 2;                          
+      460      ctx.save();
+      461      ctx.translate(ox, oy);
+      462      ctx.scale(2, 2);
+
+● Update(js\ui.js)
+  ⎿  Added 6 lines, removed 7 lines
+      478        ctx.fillStyle = c.c;
+      479        ctx.fillRect(Math.round(c.x), Math.round(c.y), Math.floo
+           r(game.clock * 6 + c.ph) % 2 ? 2 : 1, 2);
+      480      }
+      481 -    text(ctx, 'סמונמ לילג הזיא!', W / 2, 8, P.yellow, { scale:
+          - 3, shadow: P.dkRed });                                       
+      482 -    text(ctx, 'הניסרחה סכל עיגהל תחלצה!', W / 2, 34, P.white, 
+          -{ scale: 1 });                                                
+      483 -    text(ctx, 'יפוס דוקינ ' + pad(TP.Score.score), W / 2 + 52,
+          - 48, P.white);                                                
+      484 -    text(ctx, 'איש ' + pad(TP.Score.high), W / 2 - 56, 48, P.y
+          -ellow);                                                       
+      485 -    if (TP.Score.newHigh && Math.floor(game.clock * 4) % 2 ===
+          - 0) text(ctx, 'שדח איש!', W / 2, 60, P.green);                
+      486 -    if (t > 1.2) menus.victory.draw(ctx, W / 2, 160, 12, 120);
+      487 -    // keep the menu readable above the throne                
+      481 +    text(ctx, 'סמונמ לילג הזיא!', W / 2, 6, P.yellow, { scale:
+          + 3, shadow: P.dkRed });                                       
+      482 +    text(ctx, 'הניסרחה סכל עיגהל תחלצה!', W / 2, 32, P.white, 
+          +{ scale: 1 });                                                
+      483 +    text(ctx, 'יפוס דוקינ ' + pad(TP.Score.score), W / 2 + 52,
+          + 45, P.white);                                                
+      484 +    text(ctx, 'איש ' + pad(TP.Score.high), W / 2 - 56, 45, P.y
+          +ellow);                                                       
+      485 +    if (TP.Score.newHigh && Math.floor(game.clock * 4) % 2 ===
+          + 0) text(ctx, 'שדח איש!', W / 2, 56, P.green);                
+      486 +    if (t > 1.2) menus.victory.draw(ctx, W / 2, 158, 11, 120);
+      487    }
+      488  
+      489    function updateMenus() {
+
+● Update(index.html)
+  ⎿  Added 1 line, removed 1 line
+      14  <body>
+      15    <main id="app">
+      16      <canvas id="screen" width="320" height="180" role="img" ari
+          a-label="קחשמה ךסמ — סמונמה טלאותה ריינ לילג"></canvas>
+      17 -    <p id="rotate-hint">ורל רישכמה תא ובבוס ,רתויב הבוטה היווחל
+         -                                                       >p/<↻ בח
+      17 +    <p id="rotate-hint">ורל רישכמה תא ובבוס ,רתויב הבוטה היווחל
+         +                                                         >p/<בח
+      18    </main>
+      19  
+      20    <div id="touch" aria-hidden="true">
+
+● Checking the remaining screens (help page 1, pause, death):
+
+  Read 3 files (ctrl+o to expand)
+
+● I'll zoom in to verify that parentheses mirror correctly within the Hebrew
+  text, like in the tally line ")7/10( םיטירפה לכ".
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Comparing my pixel text against the browser's native rendering is ambiguous at
+  this size, so I'll check the glyph order programmatically instead:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Confirmed the bidi text renders correctly per the Unicode algorithm. I'll also
+  fix the panic face to only trigger on long falls (not regular jumps) and add
+  a "points earned this level" line to the level-complete screen.
+
+● Update(js\renderer.js)
+  ⎿  Added 1 line, removed 1 line
+      196          if ((p.animT % 3.2) > 3.05) return S.blink;
+      197          return (p.animT % 1) < 0.5 ? S.idle0 : S.idle1;
+      198        }
+      199 -      if (p.vy > 60 && p.airT > 0.55) return S.fall;          
+      199 +      if (p.vy > 60 && p.airT > 0.8) return S.fall;   // only 
+          +long falls look panicked                                      
+      200        return S.jump;
+      201      },
+      202  
+
+● Update(js\ui.js)
+  ⎿  Added 3 lines, removed 2 lines
+      416        text(ctx, ln.label, 246, y, ln.ok ? P.white : P.grey, { 
+           align: 'right' });
+      417        text(ctx, ln.ok ? '+' + ln.value : '-', 76, y, ln.ok ? P
+           .green : P.grey, { align: 'left' });
+      418      });
+      419 -    text(ctx, 'דוקינ ' + pad(TP.Score.score), W / 2, 122, P.wh
+          -ite);                                                         
+      419 +    if (tl.done) text(ctx, 'הזה בלשב תודוקנ: ' + (TP.Score.sco
+          +re - game.levelStartScore), W / 2, 110, P.light);             
+      420 +    text(ctx, 'דוקינ ' + pad(TP.Score.score), W / 2, 124, P.wh
+          +ite);                                                         
+      421      if (tl.done && Math.floor(game.clock * 3) % 2 === 0) {
+      421 -      text(ctx, game.touchMode ? 'ךשמהל ושיקה' : 'ENTER ךשמהל'
+          -, W / 2, 140, P.yellow);                                      
+      422 +      text(ctx, game.touchMode ? 'ךשמהל ושיקה' : 'ENTER ךשמהל'
+          +, W / 2, 142, P.yellow);                                      
+      423      }
+      424      addHit({ id: 'complete:next', x: 0, y: 0, w: W, h: H, clic
+           k: () => game.actions.confirmComplete() });
+      425    }
+
+● I'll also move the tally screenshot in the test to after the count-up, then
+  re-run the suite:
+● Update(tools\browser-test.js)
+  ⎿  Added 1 line, removed 1 line
+      332        r = await page.evaluate(replayInPage, li, sol, 0, null);
+      333      }
+      334      check('level ' + (li + 1) + ' completed', r.ok, JSON.strin
+           gify(r));
+      335 -    if (li === 0 || li === 4) await shot(page, '08-complete-L'
+          - + (li + 1));                                                 
+      335      check('level ' + (li + 1) + ' added points (items/landings
+           /bonus)', r.score > before.score, before.score + ' -> ' + r.sc
+           ore);
+      336      await sleep(2000);                    // let the tally cou
+           nt up like a player would watch it
+      337 +    if (li === 0 || li === 4) await shot(page, '08-complete-L'
+          + + (li + 1));                                                 
+      338      const tallyDone = await page.evaluate(() => TP.game.tally 
+           && TP.game.tally.done);
+      339      check('level ' + (li + 1) + ' tally screen finished counti
+           ng', tallyDone === true);
+      340      await page.keyboard.press('Enter');   // continue
+
+  Read 3 files, ran 1 shell command (ctrl+o to expand)
+
+● Victory, level complete, and game over screens are all clean now, with layout
+  and text issues resolved. Next I'll visually check the retuned levels 4 and 5.
+
+  Read 2 files, ran 1 shell command (ctrl+o to expand)
+
+● Both levels check out visually—movers, toilets, plungers, soap, and the
+  crowned throne at L5's end. Now I'll verify the audio works error-free,
+  checking that all sound effects, music tracks, and note names parse correctly.
+
+  Made 1 scratchpad edit +39, ran 1 shell command (ctrl+o to expand)
+
+● All 23 sound effects and 3 music tracks run cleanly in a real AudioContext
+  with valid notes and no errors. Next I'll do an edge-case code review starting
+  with the core game flow, then write the README.
+
+  Read 1 file (ctrl+o to expand)
+
+● Found three robustness issues: sliding off the golden toilet at the win state,
+  tally tap bypassing the input guard, and the game-over menu being tappable
+  too early. I've fixed all three—stopping movement on landing, adding matching
+  tap guards, and delaying the menu's tappability by 0.8s.
+
+● Update(js\sim.js)
+  ⎿  Added 1 line
+      265        w.completed = true;
+      266        p.state = 'win';
+      267        p.winT = 0;
+      268 +      p.vx = 0;          // stop right here — no sliding off t
+          +he throne while bowing                                        
+      269        emit(w, 'complete', { t: t.id });
+      270      }
+      271    }
+
+● Update(js\game.js)
+  ⎿  Added 1 line, removed 1 line
+      136      restartLevel() { restartLevel(); },
+      137      continueLevel() { Score.reset(); startLevel(G.li); },
+      138      skipIntro() { if (G.state === 'intro' && G.stateT > 0.25) 
+           beginPlay(); },
+      139 -    confirmComplete() { confirmComplete(); }                  
+      139 +    confirmComplete() { if (G.state === 'complete' && G.stateT
+          + > 0.4) confirmComplete(); }                                  
+      140    };
+      141  
+      142    // ---------------------------------------------------------
+
+● Update(js\ui.js)
+  ⎿  Added 1 line, removed 1 line
+      437      text(ctx, 'דוקינ ' + pad(TP.Score.score), W / 2 + 50, 104,
+            P.white);
+      438      text(ctx, 'איש ' + pad(TP.Score.high), W / 2 - 50, 104, P.
+           yellow);
+      439      if (TP.Score.newHigh && Math.floor(game.clock * 4) % 2 ===
+            0) text(ctx, 'שדח איש!', W / 2, 115, P.green);
+      440 -    menus.gameover.draw(ctx, W / 2, 130, 14, 160);            
+      440 +    if (t > 0.8) menus.gameover.draw(ctx, W / 2, 130, 14, 160)
+          +;                                                             
+      441    }
+      442  
+      443    // confetti for the final victory
+
+● The "changed on disk" notes come from my own edits made through two spellings
+  of the path (c:\ vs C:\). To be certain nothing is out of sync, I'll re-read
+  ui.js in full:
+
+  Read 1 file (ctrl+o to expand)
+
+● ui.js looks consistent with my edits, but I noticed the touch-mode help text
+  uses ◀ ▶ characters that my pixel font can't render. I'll scan all the code's
+  text for any other unsupported characters rather than checking strings one by
+  one.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Only those two are missing, so every other string in the game renders fully.
+  Swapping them for arrows the font has:
+
+● Update(js\ui.js)
+  ⎿  Added 1 line, removed 1 line
+      306        text(ctx, 'בהזה תלסאל ועיגהו הלסאל הלסאמ וצפק.', W / 2, 
+           26, P.white);
+      307        text(ctx, 'תולסאה ןיבש ךשוחל ולפית לא!', W / 2, 37, P.or
+           ange);
+      308        const rows = game.touchMode ? [
+      309 -                              ,]'הכילה' ,'▶ ◀ ירותפכ'[        
+      309 +                              ,]'הכילה' ,'→ ← ירותפכ'[        
+      310  ,]')רתוי הובג = הכורא הציחל( הציפק' ,'הציפק רותפכ'[        
+      311  ,]'הריצע' ,'הלעמל II רותפכ'[        
+      312  ]'P, R, M ,חוור ,םיצח' ,'תדבוע תדלקמ םג'[        
+
+● Now a full re-read of sim.js, the most correctness-critical file:
+
+  Read 1 file (ctrl+o to expand)
+
+● sim.js checks out, including the moving toilets, coyote time/buffering,
+  one-way swept landing, single-death guard, and golden-toilet stop. Next I'll
+  write the bilingual README (Hebrew for players, English for developers).
+
+● Write(README.md)
+  ⎿  Wrote 84 lines to README.md
+       1 סמונמה טלאותה ריינ לילג #
+       2 ### The Polite Toilet Paper Roll
+       4 ב סמונמ טלאוט ריינ לילג :2600 יראטא ןונגסב ידממ־וד המרופטלפ קחשמ
+         .הניסרחה סכ לא ךרדב ,ךשוחה לעמ הלסאל הלסאמ ץפוק דחוימ
+       5
+         er roll jumps from toilet to toilet over the darkness, on its wa
+         y to the legendary Porcelain Throne.
+       7
+       9
+      10 How to run / םיליעפמ ךיא ##
+     … +105 lines (ctrl+o to expand)
+
+● Final verification: regenerate the bot solutions, then run the full browser
+  suite in Chrome with fresh screenshots, and again in Edge (likely your default
+  browser on Windows):
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● All checks pass in both browsers: 68/68 in Chrome and 68/68 in Edge, 0
+  JavaScript errors. Every level is verified completable. One last look at the
+  final title screen:
+
+  Read 1 file (ctrl+o to expand)
+
+● The title screen is clean. Final file listing:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● The game is built and fully playable: open index.html in the 2D folder by
+  double-clicking it. No install, server, internet or dependencies needed.
+  Automated tests passed in Chrome and Edge, but I couldn't listen to the audio
+  or try a real phone (details at the end).
+
+  What you get
+  - The roll: a 16×18 pixel-art toilet paper roll with a bow tie, red shoes and
+    a loose perforated sheet that streams behind it. It has idle, blink, run,
+    jump, panic-fall, landing squash, spinning death and polite-bow animations.
+  - The look: a 320×180 canvas scaled with sharp nearest-neighbor pixels and a
+    limited Atari-style palette. All Hebrew text is drawn in a pixel font I
+    made, with correct right-to-left layout, including numbers, Latin key names
+    and brackets inside Hebrew lines.
+  - Toilets and hazards:
+    - Toilet types: normal, blue, moving (green seat with a propeller), cracked
+      (shakes and glows orange, falls, then rebuilds), slippery (with a
+      wet-floor sign) and golden.
+    - Hazards: winged plungers, sliding soap, and water geysers that bubble and
+      show a "!" before erupting.
+  - Five hand-built levels: העונתב תולסא ,!בוטר תוריהז ,תולסאה ןיב ,ןושארה דעצה,
+    .הניסרחה סכ
+  - Game systems: 3 lives, the scoring from your brief, a high score that
+    survives refresh, and the "+100 םיסומינ!" polite-landing bonus. The roll
+    shows short polite speech bubbles.
+  - Every screen from the brief, in Hebrew: main menu, help, level select, level
+    intro, pause, level-complete tally, "ריינה רמגנ!", and the victory screen
+    with the bowing roll on the golden throne.
+  - Sound: synthesized Atari-style effects and 3 original music loops. It starts
+    only after the first click or key press, and M mutes it.
+  - Controls: keyboard by physical key position, so a Hebrew keyboard layout
+    works too. On phones there are multi-touch buttons and an on-screen pause
+    button; in portrait the game sits on top with the buttons below.
+
+  How I tested it
+  - Every level can be finished: a bot in tools/verify-levels.js plays each
+    level using the game's own physics code and finishes all five. On every
+    required jump you have at least 7 frames (60 per second) to press jump and
+    still make it: about 15 in level 1, 7–8 in levels 3–5. A few spots were
+    tighter or unfair in my first draft (one gap was impossible to jump
+    comfortably), and I fixed them.
+  - Browser tests: tools/browser-test.js passed 68 of 68 checks in both Chrome
+    and Edge, with 0 JavaScript errors. It covers your testing list: real key
+    presses, all five levels through to the victory screen, exactly one life
+    lost per fall, respawn, game over and restart, pause freezing the game,
+    mute, the high score after a page reload, touch controls on an emulated
+    phone, and five screen sizes.
+  - Screenshots from the test run are in tools/screenshots/.
+
+  Not tested
+  - I couldn't listen to the audio. I only confirmed every sound and music track
+    plays without errors and every note is valid.
+  - Touch was tested on an emulated phone, not a real one.
+  - Firefox and Safari aren't installed here. The game only uses standard
+    browser features, but I haven't run it in them.
+
+  Choices you may want to change
+  - Tank lids: the lid on each toilet's tank is a small extra platform, and the
+    safe spot when a geyser erupts.
+  - Dying: after a death you restart the level, but items you collected stay
+    collected.
+  - R (restart level): takes back the points from that attempt and keeps your
+    lives.
+  - Game over: besides "new game" there's "הזה בלשהמ ךשמה" (continue from this
+    level with the score reset to zero).
+  - Extra life: you get one at 10,000 points.
+
+  The README is written for anyone running the game (in Hebrew) and for
+  developers who want to change it (in English). The browser test needs npm
+  install --no-save puppeteer-core; the game itself doesn't.
+
+  Files are in the 2D folder:
+  - index.html
+  - README.md
+  - css/style.css
+  - js/ (the game code, 13 files)
+  - tools/verify-levels.js
+  - tools/browser-test.js
+
+> <ide_opened_file>The user opened the file c:\Users\97253\OneDrive - The
+  Academic College of Tel-Aviv Jaffa - MTA\Desktop\םיטקייורפ
+  2D\index.html in the IDE. This may or may not be related to the current\תונכת
+  task.</ide_opened_file>
+
+> how do i play
+
+● I'll open the game in your default browser now.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● I sent index.html to your default browser and the command ran without errors.
+  I can't see your screen, so if no game window appeared, double-click
+  index.html in the 2D folder. In VS Code you can right-click it and choose
+  "Reveal in File Explorer" to find it. You can also drag it into any browser
+  window.
+
+  Starting: press Enter or click "קחשמ לחתה". The sound starts after your first
+  key press or click.
+
+  Controls
+
+  ┌───────────────────────────────┬───────────────┐
+  │            Action             │      Key      │
+  ├───────────────────────────────┼───────────────┤
+  │ Walk                          │ ← → or A / D  │
+  ├───────────────────────────────┼───────────────┤
+  │ Jump (hold for a higher jump) │ Space, W or ↑ │
+  ├───────────────────────────────┼───────────────┤
+  │ Pause / resume                │ P or Esc      │
+  ├───────────────────────────────┼───────────────┤
+  │ Restart the level             │ R             │
+  ├───────────────────────────────┼───────────────┤
+  │ Sound on/off                  │ M             │
+  ├───────────────────────────────┼───────────────┤
+  │ Full screen                   │ F             │
+  └───────────────────────────────┴───────────────┘
+
+  Goal: jump from toilet to toilet without falling into the darkness, and reach
+  the golden toilet at the end of each level. You have 3 lives and there are 5
+  levels; the last one ends at the golden throne.
+
+  Tips
+  - Land in the middle of a seat for a +100 םיסומינ bonus.
+  - Grey cracked toilets collapse about half a second after you land, so jump
+    off quickly.
+  - Bubbles and a "!" above a toilet mean water is about to spray out. Wait
+    until it stops, or stand on the tank lid, which is safe.
+  - Green-seat toilets move. Time your jump for when one swings close.
+  - Orange soap slides along some seats; jump over it. Flying plungers knock you
+    out if you touch them.
+  - Light-blue wet toilets are slippery, so expect to slide.
+
+  On a phone: tap the menu to start, and use the on-screen arrow and "הציפק"
+  buttons. Opening the file directly on a phone usually doesn't work. Instead,
+  run python -m http.server 8000 on your PC, then open http://<your-PC-IP>:8000
+  on the phone while it's on the same Wi-Fi.
