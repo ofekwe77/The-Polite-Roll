@@ -1,5 +1,5 @@
 /* ==========================================================
-   גליל נייר התואלט המנומס — config.js
+   גליל נייר הטואלט המנומס — config.js
    Global constants: resolution, palette, physics, scoring.
    Pure data — safe to load in Node (used by tools/verify-levels.js).
    ========================================================== */

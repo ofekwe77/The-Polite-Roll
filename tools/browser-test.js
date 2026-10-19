@@ -137,7 +137,7 @@ async function main() {
   let s = await state(page);
   check('game loads into the main menu', s.state === 'title', s.state);
   const meta = await page.evaluate(() => ({ lang: document.documentElement.lang, dir: document.documentElement.dir, title: document.title }));
-  check('page is Hebrew RTL with the exact title', meta.lang === 'he' && meta.dir === 'rtl' && meta.title === 'גליל נייר התואלט המנומס', JSON.stringify(meta));
+  check('page is Hebrew RTL with the exact title', meta.lang === 'he' && meta.dir === 'rtl' && meta.title === 'גליל נייר הטואלט המנומס', JSON.stringify(meta));
   await shot(page, '01-title');
   await page.keyboard.press('ArrowDown');
   await sleep(80);

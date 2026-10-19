@@ -270,7 +270,7 @@
     const t = game.clock;
     TP.Renderer.prepareStars(99, 2000);
     TP.Renderer.background(ctx, t * 12, t);
-    text(ctx, 'גליל נייר התואלט', W / 2, 8, P.white, { scale: 3, shadow: P.red });
+    text(ctx, 'גליל נייר הטואלט', W / 2, 8, P.white, { scale: 3, shadow: P.red });
     text(ctx, 'המנומס', W / 2, 33, P.yellow, { scale: 3, shadow: P.orange });
     text(ctx, 'קפוץ מאסלה לאסלה והגע לכס החרסינה!', W / 2, 62, P.cyan);
 
