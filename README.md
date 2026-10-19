@@ -5,6 +5,21 @@
 
 A 2D platformer game: an extremely polite toilet paper roll jumps from toilet to toilet over the darkness, on its way to the legendary Porcelain Throne.
 
+![מסך הפתיחה](docs/screenshots/title.png)
+
+## צילומי מסך / Screenshots
+
+| | |
+|---|---|
+| ![שלב 3 - זהירות, רטוב!](docs/screenshots/level3.png) | ![שלב 5 - כס החרסינה](docs/screenshots/level5.png) |
+| שלב 3: התזות מים, סבון ובועות | שלב 5: אסלות סדוקות, זזות ופומפה מעופפת |
+| ![פתיחת שלב](docs/screenshots/intro.png) | ![הוראות](docs/screenshots/help.png) |
+| פתיחת שלב | מה מחכה בדרך |
+| ![שלב הושלם](docs/screenshots/complete.png) | ![נגמר הנייר!](docs/screenshots/gameover.png) |
+| סיכום שלב | נגמר הנייר! |
+| ![ניצחון](docs/screenshots/victory.png) | ![טלפון](docs/screenshots/mobile.png) |
+| כס החרסינה: ניצחון | בטלפון: כפתורי מגע |
+
 ---
 
 ## איך מפעילים / How to run
